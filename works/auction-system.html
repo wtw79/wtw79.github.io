@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拍卖竞价显示系统 · 详情</title>
+<meta name="description" content="拍卖竞价显示系统的详情：功能地图、会前会中会后流程、版本演进。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF8;--surface:#FFFFFF;--surface-2:#F5F3EF;
+    --ink:#17171C;--ink-2:#45454D;--muted:#8A8A92;
+    --line:#EAE6DF;--line-strong:#DCD7CE;
+    --accent:#E2603B;--accent-ink:#B8431F;--accent-soft:rgba(226,96,59,.10);
+    --accent-tint:rgba(226,96,59,.055);
+    --radius-lg:28px;--radius:20px;--radius-sm:14px;
+    --shadow-1:0 1px 2px rgba(23,23,28,.04),0 4px 14px rgba(23,23,28,.05);
+    --shadow-2:0 4px 10px rgba(23,23,28,.05),0 18px 44px rgba(23,23,28,.09);
+    --ease-spring:cubic-bezier(.34,1.4,.64,1);--ease-std:cubic-bezier(.2,0,0,1);
+    --font-display:'Noto Serif SC',serif;--font-body:'Noto Sans SC',system-ui,sans-serif;
+    --font-mono:'Space Grotesk','Noto Sans SC',sans-serif;--maxw:1080px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--accent-soft);color:var(--accent-ink)}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--font-mono);letter-spacing:.02em}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+  .back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--ink-2);margin:36px 0 8px;transition:color .2s,gap .2s}
+  .back:hover{color:var(--accent-ink);gap:12px}
+
+  .sec-head{margin:28px 0 44px}
+  .eyebrow{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow::before{content:"";width:22px;height:1.5px;background:var(--accent);opacity:.6}
+  .sec-title{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1.2;letter-spacing:-.01em}
+  .sec-sub{color:var(--muted);margin-top:14px;max-width:620px;font-size:15.5px}
+
+  .work-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow-1);margin-bottom:28px}
+  .work-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .work-badge{font-family:var(--font-mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;color:var(--accent-ink);background:var(--accent-soft);padding:6px 13px;border-radius:999px;text-transform:uppercase}
+  .work-head h1{font-family:var(--font-display);font-size:clamp(30px,5vw,40px);font-weight:700;margin:14px 0 6px;line-height:1.2}
+  .work-head .sub{color:var(--muted);font-size:15px}
+  .work-links{display:flex;gap:10px;align-items:center}
+  .work-links a{font-size:13.5px;font-weight:600;color:var(--ink-2);border:1px solid var(--line-strong);padding:9px 17px;border-radius:999px;transition:.2s}
+  .work-links a:hover{border-color:var(--accent);color:var(--accent-ink);transform:translateY(-1px)}
+  .work-desc{color:var(--ink-2);margin:22px 0 0;font-size:15.5px}
+
+  .sub-h{font-size:12px;font-family:var(--font-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:44px 0 16px;display:flex;align-items:center;gap:10px}
+  .sub-h::before{content:"";width:18px;height:1.5px;background:var(--line-strong)}
+
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .feat{background:var(--surface-2);border-radius:var(--radius-sm);padding:20px;border:1px solid var(--line);transition:transform .25s var(--ease-spring),box-shadow .25s}
+  .feat:hover{transform:translateY(-3px);box-shadow:var(--shadow-1)}
+  .feat .ico{font-size:22px;line-height:1}
+  .feat .t{font-weight:600;font-size:15px;margin:12px 0 5px}
+  .feat .d{font-size:13.5px;color:var(--muted);line-height:1.55}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .step{background:var(--surface-2);border-radius:var(--radius-sm);padding:24px;border:1px solid var(--line);transition:transform .25s var(--ease-spring),box-shadow .25s}
+  .step:hover{transform:translateY(-3px);box-shadow:var(--shadow-1)}
+  .step.n{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--accent);margin-bottom:12px}
+  .step h4{font-size:16px;font-weight:600;margin-bottom:12px}
+  .step ul{list-style:none;font-size:13.5px;color:var(--ink-2)}
+  .step ul li{padding-left:16px;position:relative;margin-bottom:7px}
+  .step ul li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+  .timeline{border-left:2px solid var(--line-strong);margin-left:8px}
+  .tl-item{padding:0 0 22px 26px;position:relative}
+  .tl-item::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--accent);transition:.2s}
+  .tl-item:hover::before{background:var(--accent)}
+  .tl-item .v{font-family:var(--font-mono);font-weight:700;font-size:14px;color:var(--ink)}
+  .tl-item .x{font-size:13.5px;color:var(--muted);margin-top:3px}
+
+  .note-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:36px 40px;box-shadow:var(--shadow-1);margin-bottom:22px}
+  .note-title{font-family:var(--font-display);font-size:23px;font-weight:700;margin:0 0 14px;line-height:1.3}
+  .note-meta{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:5px 12px;border-radius:999px;display:inline-block;margin-bottom:16px}
+  .note-card p{color:var(--ink-2);font-size:15.5px;line-height:1.75;margin:0 0 14px}
+  .note-card p:last-child{margin-bottom:0}
+
+  footer{border-top:1px solid var(--line);padding:36px 0;margin-top:30px}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;color:var(--muted);font-size:13.5px}
+  .foot-inner a{color:var(--ink-2);font-weight:500}
+
+  @media(max-width:760px){
+    .feat-grid,.steps{grid-template-columns:1fr}
+    .work-card{padding:28px 22px}
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="../index.html">← 返回主页</a>
+
+    <div class="sec-head">
+      <div class="eyebrow">Work Detail · 作品详情</div>
+      <h1 class="sec-title">拍卖竞价显示系统</h1>
+      <p class="sec-sub">面向拍卖会现场的信息展示与竞价管理工具 · WPF / .NET 8 桌面应用。下面是与它有关的所有细节。</p>
+    </div>
+
+    <div class="work-card">
+      <div class="work-head">
+        <div>
+          <span class="work-badge">核心作品 · 2015 遗产 · 2025 起二次开发</span>
+          <h1>拍卖竞价显示系统</h1>
+          <div class="sub">面向拍卖会现场的信息展示与竞价管理工具 · WPF / .NET 8 桌面应用</div>
+        </div>
+        <div class="work-links">
+          <a href="https://github.com/wtw79" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+      <p class="work-desc">一个面向拍卖现场的竞价显示系统：标的管理、大屏投屏、实时竞价、成交归档，一站式完成"从开场到落槌"的全过程。</p>
+    </div>
+
+    <div class="sub-h">功能地图</div>
+    <div class="feat-grid">
+      <div class="feat"><div class="ico">📋</div><div class="t">标的管理</div><div class="d">新增/编辑/删除/设为当前，Excel 批量导入，各标的独立配置。</div></div>
+      <div class="feat"><div class="ico">🎛️</div><div class="t">控制台</div><div class="d">号牌输入即提交，增价/降价随时切换，投屏状态实时预览。</div></div>
+      <div class="feat"><div class="ico">🖥️</div><div class="t">大屏展示</div><div class="d">欢迎页公告+图片轮播，竞价页实时报价，支持多屏投屏。</div></div>
+      <div class="feat"><div class="ico">📦</div><div class="t">成交归档</div><div class="d">一键生成 Excel 报表、保存现场截图，按标的带时间戳归档。</div></div>
+      <div class="feat"><div class="ico">📊</div><div class="t">报表管理</div><div class="d">历史报表查看、记录撤回/删除、多页导出 Excel。</div></div>
+      <div class="feat"><div class="ico">⚙️</div><div class="t">系统设置</div><div class="d">欢迎页文字/字体、竞价页表格结构、背景一键切换。</div></div>
+      <div class="feat"><div class="ico">🔢</div><div class="t">数字软键盘</div><div class="d">无物理键盘时的报价录入方案，支持快速自定义按键。</div></div>
+      <div class="feat"><div class="ico">🔒</div><div class="t">本地数据留档</div><div class="d">数据存于本地 AuctionData 目录，按标的自动归档，定期备份即可长期存档。</div></div>
+      <div class="feat"><div class="ico">📡</div><div class="t">多副屏支持</div><div class="d">投屏架构重构，刷新流畅，支持多副屏自由切换与动态分辨率适配。</div></div>
+    </div>
+
+    <div class="sub-h">一场拍卖的完整流程</div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">01 / 会前准备</div>
+        <h4>把资料管起来</h4>
+        <ul>
+          <li>标的管理中新增本场标的</li>
+          <li>完善起拍价、公告 PDF、图片</li>
+          <li>确认大屏标题与表格样式</li>
+          <li>连接副屏，预览投屏效果</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="n">02 / 会中竞价</div>
+        <h4>把报价亮出来</h4>
+        <ul>
+          <li>设为当前标的，打开欢迎页</li>
+          <li>点击"开始拍卖"</li>
+          <li>录入号牌，输入即提交</li>
+          <li>调整幅度，落槌确认成交</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="n">03 / 会后收尾</div>
+        <h4>把结果存下来</h4>
+        <ul>
+          <li>核对成交记录</li>
+          <li>按需导出 Excel</li>
+          <li>确认归档目录报表与截图</li>
+          <li>继续下一标的或结束本场</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-h">版本演进</div>
+    <div class="timeline">
+      <div class="tl-item"><div class="v">V2.2.0 · 功能整合版</div><div class="x">功能入口统一，调整成交归档，导入导出模板精简。</div></div>
+      <div class="tl-item"><div class="v">V2.1.57 · 投屏重构</div><div class="x">刷新更流畅，支持多副屏自由切换。</div></div>
+      <div class="tl-item"><div class="v">V2.1.56 · 显示优化</div><div class="x">PDF 全屏无黑边，动态分辨率适配各种屏幕比例。</div></div>
+      <div class="tl-item"><div class="v">V2.1.55 及更早</div><div class="x">2025 年起接手二次开发，在 2015 年老系统基础上重构标的体系、竞价流程与报表管理。</div></div>
+    </div>
+
+    <div class="sub-h">纪</div>
+    <article class="note-card">
+      <span class="note-meta">拍卖系统二次开发 · 2025 起</span>
+      <h2 class="note-title">二次开发那套老系统</h2>
+      <p>原系统是 2015 年的老东西，没 UI、没架构，像"计算机刚入世"。接手后一步步补全、理顺，做成了一套能用的入门级企业系统。真正要补的，不在有没有现成办法，而在这套东西此前从没被真正做透过，只停在表面。标的数据怎么建模、竞价怎么流转、成交怎么留痕、边界怎么兜，这些最琐细的活儿，没有现成可抄，只能一点点想清楚、做扎实。也才第一次，让我原本飘着的认知落成了实的东西。</p>
+    </article>
+  </div>
+
+  <footer>
+    <div class="container foot-inner">
+      <div>© <span>2026</span> wtw79 · 在校大学生，向下游 AI 赋能的 FDE 方向努力</div>
+      <a href="../index.html">返回主页 →</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -20,10 +20,10 @@
     --muted:#8A8A92;
     --line:#EAE6DF;
     --line-strong:#DCD7CE;
-    --accent:#E2603B;
-    --accent-ink:#B8431F;
-    --accent-soft:rgba(226,96,59,.10);
-    --accent-tint:rgba(226,96,59,.055);
+    --accent:#3A5A78;
+    --accent-ink:#28455C;
+    --accent-soft:rgba(58,90,120,.10);
+    --accent-tint:rgba(58,90,120,.055);
     --radius-lg:28px;
     --radius:20px;
     --radius-sm:14px;
@@ -73,20 +73,20 @@
 
   /* ============ 通用区块 ============ */
   section{padding:108px 0;scroll-margin-top:84px}
-  .eyebrow{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px;display:inline-flex;align-items:center;gap:8px}
   .eyebrow::before{content:"";width:22px;height:1.5px;background:var(--accent);opacity:.6}
   .sec-title{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1.2;letter-spacing:-.01em}
   .sec-sub{color:var(--muted);margin-top:14px;max-width:560px;font-size:15.5px}
-  .sec-head{margin-bottom:56px}
+  .sec-head{margin-bottom:48px}
 
   /* ============ Hero ============ */
   .hero{position:relative;padding:158px 0 100px;overflow:hidden}
   .hero::before{content:"";position:absolute;top:-140px;right:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--accent-soft),transparent 68%);pointer-events:none}
-  .hero::after{content:"";position:absolute;bottom:-200px;left:-160px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(226,96,59,.05),transparent 70%);pointer-events:none}
+  .hero::after{content:"";position:absolute;bottom:-200px;left:-160px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(58,90,120,.05),transparent 70%);pointer-events:none}
   .hero-inner{position:relative;z-index:1;max-width:760px}
   .pill{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent-ink);font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.08em;padding:6px 14px;border-radius:999px;margin-bottom:26px}
   .hero h1{font-family:var(--font-display);font-size:clamp(42px,7vw,74px);line-height:1.06;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
-  .hero h1 .name{background:linear-gradient(120deg,var(--accent),#F0A35E);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero h1 .name{background:linear-gradient(120deg,var(--accent),#7BA6C4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .hero .tag{font-size:clamp(18px,2.4vw,22px);color:var(--ink-2);font-weight:500}
   .hero p.lead{margin-top:26px;font-size:17px;color:var(--ink-2);max-width:620px}
   .hero-cta{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap}
@@ -96,15 +96,15 @@
   .btn::after{content:"";position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .15s}
   .btn:hover::after{opacity:.08}
   .btn:active{transform:scale(.97)}
-  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 20px rgba(226,96,59,.26)}
-  .btn-primary:hover{box-shadow:0 10px 30px rgba(226,96,59,.34)}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 20px rgba(58,90,120,.26)}
+  .btn-primary:hover{box-shadow:0 10px 30px rgba(58,90,120,.34)}
   .btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-strong)}
   .btn-ghost:hover{border-color:var(--ink);box-shadow:var(--shadow-1)}
 
   /* ============ 关于 ============ */
   .about-grid{display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:start}
   .avatar{aspect-ratio:1;border-radius:var(--radius);background:linear-gradient(150deg,#fff,var(--surface-2));border:1px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-1);position:relative;overflow:hidden}
-  .avatar .mono-mark{font-family:var(--font-display);font-size:92px;font-weight:700;background:linear-gradient(135deg,var(--accent),#F0A35E);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.92}
+  .avatar .mono-mark{font-family:var(--font-display);font-size:92px;font-weight:700;background:linear-gradient(135deg,var(--accent),#7BA6C4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.92}
   .avatar .ring{position:absolute;inset:16px;border:1px dashed var(--line-strong);border-radius:16px}
   .about-body h3{font-family:var(--font-display);font-size:25px;font-weight:600;margin-bottom:18px;line-height:1.35}
   .about-body p{color:var(--ink-2);margin-bottom:16px;font-size:16px}
@@ -152,6 +152,15 @@
   .work-empty h3{font-family:var(--font-display);font-size:22px;margin:12px 0 8px;color:var(--ink-2)}
   .work-empty p{color:var(--muted);font-size:14.5px;max-width:440px;margin:0 auto}
 
+  /* ============ 纪（收在作品集内） ============ */
+  .about-note{font-size:14.5px;color:var(--muted);border-left:3px solid var(--accent);padding:4px 0 4px 16px;margin:6px 0 0;line-height:1.7}
+  .note-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:36px 40px;box-shadow:var(--shadow-1);margin-bottom:22px;transition:transform .3s var(--ease-spring),box-shadow .3s}
+  .note-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-2)}
+  .note-meta{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:5px 12px;border-radius:999px;display:inline-block;margin-bottom:16px}
+  .note-card h3{font-family:var(--font-display);font-size:23px;font-weight:700;margin:0 0 14px;line-height:1.3}
+  .note-card p{color:var(--ink-2);font-size:15.5px;line-height:1.75;margin:0 0 14px}
+  .note-card p:last-child{margin-bottom:0}
+
   /* ============ 技能 ============ */
   .skill-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
   .skill-group{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-1);transition:transform .3s var(--ease-spring),box-shadow .3s}
@@ -164,7 +173,7 @@
 
   /* ============ 联系 ============ */
   .contact{background:var(--ink);color:#fff;border-radius:var(--radius-lg);padding:68px 48px;text-align:center;position:relative;overflow:hidden}
-  .contact::after{content:"";position:absolute;bottom:-130px;left:50%;transform:translateX(-50%);width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(226,96,59,.22),transparent 70%)}
+  .contact::after{content:"";position:absolute;bottom:-130px;left:50%;transform:translateX(-50%);width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(58,90,120,.22),transparent 70%)}
   .contact .eyebrow{color:var(--accent)}
   .contact .eyebrow::before{background:var(--accent)}
   .contact h2{font-family:var(--font-display);font-size:clamp(26px,4vw,38px);font-weight:700;position:relative;z-index:1}
@@ -197,6 +206,7 @@
     section{padding:84px 0}
     .contact{padding:50px 26px}
     .work-card{padding:28px 22px}
+    .note-card{padding:28px 22px}
   }
   @media(max-width:520px){
     .hero-cta .btn{flex:1}
@@ -233,8 +243,8 @@
     <span class="pill reveal">Personal Site · 个人主页</span>
     <!-- 大标题：可替换为你的名字，或保留 wtw79 作为个人品牌 -->
     <h1 class="reveal">你好，我是 <span class="name">wtw79</span></h1>
-    <div class="tag reveal">在校大学生 · 计算机 / 算法 / 深度思考</div>
-    <p class="lead reveal">对计算机、IT 行业、算法与深度思考充满兴趣，也积累了一些实战专长。现阶段正朝"下游 AI 赋能"的 FDE 方向努力——把模型能力真正落到业务现场，解决真实问题。</p>
+    <div class="tag reveal">在校大学生</div>
+    <p class="lead reveal">还在学校，却始终不甘心"只学不做"。着迷于算法与底层逻辑，也越来越确信：AI 真正的价值不在模型本身，而在它能不能落到真实的现场、解决具体的人面对的具体问题。我正朝这个方向走。</p>
     <div class="hero-cta reveal">
       <a href="#works" class="btn btn-primary">查看作品 →</a>
       <a href="#contact" class="btn btn-ghost">联系我</a>
@@ -253,16 +263,16 @@
       </div>
       <div class="about-body reveal">
         <div class="eyebrow">About · 关于我</div>
-        <h3>在校大学生，正成为 AI 与业务之间的"翻译官"</h3>
-        <p>我是 <span class="hl">wtw79</span>，[学校 · 专业] 的一名在校大学生。对计算机、IT 行业、算法与深度思考保持着强烈的好奇，也积累了一些实战专长。</p>
-        <p>现阶段我正朝 <span class="hl">"下游 AI 赋能"的 FDE（Forward Deployed Engineer）</span> 方向努力——不去做模型本身，而是把已有的模型能力，真正落到真实的业务现场，解决人遇到的具体问题。我相信 [你的理念，待补充]。</p>
-        <p>我已经在动手验证这件事：[拍卖竞价显示系统] 是我做过的一个例子——它让我理解了"现场不掉链子"才是好工具的标准，也锻炼了把复杂流程做成可靠产品的能力。更多经历与项目，持续补充中。</p>
+        <h3>在校，正在摸索自己的方向</h3>
+        <p>我是 <span class="hl">wtw79</span>，[学校 · 专业] 的一名在校大学生。对计算机、算法，以及"把一个问题想透"这件事比较着迷，也喜欢动手做点真正能跑起来的东西。</p>
+        <p>从 2025 年起，我对一套 2015 年的拍卖系统做了二次开发，花了一番功夫补全、理顺，如今已是个能用的入门级企业系统。这个过程里我倒想通了不少东西——关于它该怎么搭、数据怎么流、现场的人怎么用——都记在作品集的「纪」里。</p>
+        <p>最近在往 <span class="hl">FDE（Forward Deployed Engineer，前沿部署工程师）</span>的方向摸索，简单说，就是把已有的模型能力，接到真实的业务现场去。这中间我还在大量学习，方向也还在调；但我越来越确信：技术真正的价值，在于它能不能落到具体的人、具体的问题上。</p>
         <div class="tags">
-          <span class="tag">计算机科学</span>
-          <span class="tag">算法</span>
+          <span class="tag">算法 · 系统设计</span>
           <span class="tag">深度思考</span>
-          <span class="tag">AI 赋能 / FDE</span>
-          <span class="tag">拍卖数字化（项目）</span>
+          <span class="tag">AI 落地 / FDE</span>
+          <span class="tag">WPF / .NET 8</span>
+          <span class="tag">现场产品思维</span>
           <span class="tag">[某专长 待补充]</span>
         </div>
       </div>
@@ -276,76 +286,28 @@
     <div class="sec-head reveal">
       <div class="eyebrow">Works · 作品集</div>
       <h2 class="sec-title">我做过什么</h2>
-      <p class="sec-sub">以拍卖竞价显示系统为核心作品，其余作品可持续补充。</p>
     </div>
 
-    <!-- ===== 核心作品：拍卖竞价显示系统 ===== -->
+    <!-- ===== 核心作品：拍卖竞价显示系统（概括） ===== -->
     <div class="work-card reveal">
       <div class="work-head">
         <div>
-          <span class="work-badge">核心作品 · 2021—至今</span>
+          <span class="work-badge">核心作品 · 2015 遗产 · 2025 起二次开发</span>
           <h3>拍卖竞价显示系统</h3>
           <div class="sub">面向拍卖会现场的信息展示与竞价管理工具 · WPF / .NET 8 桌面应用</div>
         </div>
         <div class="work-links">
+          <a href="works/auction-system.html">查看详情 ↗</a>
           <a href="https://github.com/wtw79" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
-      <p class="work-desc">标的管理、大屏投屏、实时竞价、成交归档，一站式完成"从开场到落槌"的全过程。所有业务数据保存在本地，不依赖联网、不外传。</p>
-
-      <div class="sub-h">功能地图</div>
-      <div class="feat-grid">
-        <div class="feat"><div class="ico">📋</div><div class="t">标的管理</div><div class="d">新增/编辑/删除/设为当前，Excel 批量导入，各标的独立配置。</div></div>
-        <div class="feat"><div class="ico">🎛️</div><div class="t">控制台</div><div class="d">号牌输入即提交，增价/降价随时切换，投屏状态实时预览。</div></div>
-        <div class="feat"><div class="ico">🖥️</div><div class="t">大屏展示</div><div class="d">欢迎页公告+图片轮播，竞价页实时报价，支持多屏投屏。</div></div>
-        <div class="feat"><div class="ico">📦</div><div class="t">成交归档</div><div class="d">一键生成 Excel 报表、保存现场截图，按标的带时间戳归档。</div></div>
-        <div class="feat"><div class="ico">📊</div><div class="t">报表管理</div><div class="d">历史报表查看、记录撤回/删除、多页导出 Excel。</div></div>
-        <div class="feat"><div class="ico">⚙️</div><div class="t">系统设置</div><div class="d">欢迎页文字/字体、竞价页表格结构、背景一键切换。</div></div>
-        <div class="feat"><div class="ico">🔢</div><div class="t">数字软键盘</div><div class="d">无物理键盘时的报价录入方案，支持快速自定义按键。</div></div>
-        <div class="feat"><div class="ico">🔒</div><div class="t">本地数据留档</div><div class="d">数据存于本地 AuctionData 目录，按标的自动归档，定期备份即可长期存档。</div></div>
-        <div class="feat"><div class="ico">📡</div><div class="t">多副屏支持</div><div class="d">投屏架构重构，刷新流畅，支持多副屏自由切换与动态分辨率适配。</div></div>
-      </div>
-
-      <div class="sub-h">一场拍卖的完整流程</div>
-      <div class="steps">
-        <div class="step">
-          <div class="n">01 / 会前准备</div>
-          <h4>把资料管起来</h4>
-          <ul>
-            <li>标的管理中新增本场标的</li>
-            <li>完善起拍价、公告 PDF、图片</li>
-            <li>确认大屏标题与表格样式</li>
-            <li>连接副屏，预览投屏效果</li>
-          </ul>
-        </div>
-        <div class="step">
-          <div class="n">02 / 会中竞价</div>
-          <h4>把报价亮出来</h4>
-          <ul>
-            <li>设为当前标的，打开欢迎页</li>
-            <li>点击"开始拍卖"</li>
-            <li>录入号牌，输入即提交</li>
-            <li>调整幅度，落槌确认成交</li>
-          </ul>
-        </div>
-        <div class="step">
-          <div class="n">03 / 会后收尾</div>
-          <h4>把结果存下来</h4>
-          <ul>
-            <li>核对成交记录</li>
-            <li>按需导出 Excel</li>
-            <li>确认归档目录报表与截图</li>
-            <li>继续下一标的或结束本场</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sub-h">版本演进</div>
-      <div class="timeline">
-        <div class="tl-item"><div class="v">V2.2.0 · 功能整合版</div><div class="x">功能入口统一，调整成交归档，导入导出模板精简。</div></div>
-        <div class="tl-item"><div class="v">V2.1.57 · 投屏重构</div><div class="x">刷新更流畅，支持多副屏自由切换。</div></div>
-        <div class="tl-item"><div class="v">V2.1.56 · 显示优化</div><div class="x">PDF 全屏无黑边，动态分辨率适配各种屏幕比例。</div></div>
-        <div class="tl-item"><div class="v">V2.1.55 及更早</div><div class="x">2021 年起持续迭代，奠定标的体系、竞价流程、报表管理等核心能力。</div></div>
+      <p class="work-desc">一个面向拍卖现场的竞价显示系统：标的管理、大屏投屏、实时竞价、成交归档，一站式完成"从开场到落槌"的全过程。</p>
+      <div class="chips" style="margin-top:20px">
+        <span class="chip">标的管理</span>
+        <span class="chip">大屏投屏</span>
+        <span class="chip">实时竞价</span>
+        <span class="chip">成交归档</span>
+        <span class="chip">本地留档</span>
       </div>
     </div>
 
@@ -355,6 +317,13 @@
       <h3>你的其他作品</h3>
       <p>在这里复制上面的 <code>.work-card</code> 结构，添加你的第二个、第三个作品——名称、一句话简介、功能要点、链接即可。想放几个放几个。</p>
     </div>
+
+    <!-- ===== 纪：收在作品集里 ===== -->
+    <div class="sub-h">纪</div>
+    <article class="note-card reveal">
+      <span class="note-meta">随想 · 2026</span>
+      <p>动手前我总先想它会被怎么用，这是我做这套系统时养成的。写的时候一个疏忽，到现场才显出分量，我是栽过才记牢的。我还只是个在学的人，想得明白离想得通、做的实际差得远，所以自然就在每次行动里多一份顾虑了。</p>
+    </article>
   </div>
 </section>
 
@@ -378,16 +347,6 @@
         </div>
       </div>
       <div class="skill-group reveal">
-        <h4><span class="bar"></span>领域经验</h4>
-        <div class="chips">
-          <span class="chip">拍卖数字化</span>
-          <span class="chip">现场大屏方案</span>
-          <span class="chip">数据留档</span>
-          <span class="chip">招投标现场</span>
-          <span class="chip">流程设计</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
         <h4><span class="bar"></span>工具与集成</h4>
         <div class="chips">
           <span class="chip">Excel 集成</span>
@@ -397,17 +356,26 @@
           <span class="chip">版本迭代</span>
         </div>
       </div>
+      <div class="skill-group reveal">
+        <h4><span class="bar"></span>在学方向</h4>
+        <div class="chips">
+          <span class="chip">数据结构与算法</span>
+          <span class="chip">Python</span>
+          <span class="chip">LLM 应用</span>
+          <span class="chip">业务建模</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
 
 <!-- ===================== 联系 ===================== -->
 <section id="contact">
   <div class="container">
     <div class="contact reveal">
       <div class="eyebrow">Contact · 联系</div>
-      <h2>一起做点靠谱的东西</h2>
-      <p>无论你是拍卖机构、行业从业者，还是对方案感兴趣的朋友，都欢迎交流。</p>
+      <p>无论你是企业、行业从业者，还是对方案感兴趣的朋友，都欢迎交流。</p>
       <div class="contact-cta">
         <!-- 把 you@example.com 换成你的真实邮箱 -->
         <a href="mailto:you@example.com" class="btn btn-primary">✉️ 发邮件</a>
