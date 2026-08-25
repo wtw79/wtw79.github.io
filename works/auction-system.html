@@ -8,13 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="../assets/img/work-auction.png">
 <style>
   :root{
     --bg:#FBFAF8;--surface:#FFFFFF;--surface-2:#F5F3EF;
     --ink:#17171C;--ink-2:#45454D;--muted:#8A8A92;
     --line:#EAE6DF;--line-strong:#DCD7CE;
-    --accent:#E2603B;--accent-ink:#B8431F;--accent-soft:rgba(226,96,59,.10);
-    --accent-tint:rgba(226,96,59,.055);
+    --accent:#3A5A78;--accent-ink:#28455C;--accent-soft:rgba(58,90,120,.10);
+    --accent-tint:rgba(58,90,120,.055);
     --radius-lg:28px;--radius:20px;--radius-sm:14px;
     --shadow-1:0 1px 2px rgba(23,23,28,.04),0 4px 14px rgba(23,23,28,.05);
     --shadow-2:0 4px 10px rgba(23,23,28,.05),0 18px 44px rgba(23,23,28,.09);
@@ -90,9 +91,44 @@
     .feat-grid,.steps{grid-template-columns:1fr}
     .work-card{padding:28px 22px}
   }
+
+  /* ============ 增强: 鼠标光晕 ============ */
+  #cursor-glow{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:9999;background:radial-gradient(circle,rgba(58,90,120,.10),transparent 70%);transform:translate(-50%,-50%);opacity:0;transition:opacity .25s;mix-blend-mode:multiply}
+  @media (pointer:coarse){#cursor-glow{display:none}}
+
+  /* ============ 增强: 全页 Canvas 背景 ============ */
+  #heroCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:.32;pointer-events:none}
+
+  /* ============ 增强: 顶部大图 ============ */
+  .detail-hero{height:340px;border-radius:var(--radius);overflow:hidden;margin-bottom:28px;border:1px solid var(--line);box-shadow:var(--shadow-2)}
+  .detail-hero img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease-std)}
+  .detail-hero:hover img{transform:scale(1.03)}
+  @media(max-width:760px){.detail-hero{height:220px}}
+
+  /* ============ 增强: reveal ============ */
+  .reveal{opacity:0;transform:translateY(28px) scale(.985);transition:opacity .8s var(--ease-std),transform .8s var(--ease-spring)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ============ 增强: 3D tilt ============ */
+  .tilt{transform-style:preserve-3d;transition:transform .15s ease-out;position:relative}
+  .tilt .shine{position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.32) 50%,transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none;border-radius:inherit;mix-blend-mode:overlay}
+  .tilt:hover .shine{opacity:1}
+
+  /* ============ 增强: 返回按钮 ============ */
+  .back{padding-left:10px;padding-right:10px;margin-left:-10px;border-radius:8px;transition:background .2s,color .2s,gap .2s}
+  .back:hover{background:var(--accent-soft)}
+
+  /* ============ 增强: 减少动画偏好保护 ============ */
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    #heroCanvas,#cursor-glow{display:none}
+  }
 </style>
 </head>
 <body>
+<div id="cursor-glow"></div>
+<canvas id="heroCanvas"></canvas>
   <div class="container">
     <a class="back" href="../index.html">← 返回主页</a>
 
@@ -102,7 +138,9 @@
       <p class="sec-sub">面向拍卖会现场的信息展示与竞价管理工具 · WPF / .NET 8 桌面应用。下面是与它有关的所有细节。</p>
     </div>
 
-    <div class="work-card">
+    <div class="detail-hero reveal"><img src="../assets/img/work-auction.png" alt="拍卖系统界面示意"></div>
+
+    <div class="work-card reveal tilt">
       <div class="work-head">
         <div>
           <span class="work-badge">核心作品 · 2015 遗产 · 2025 起二次开发</span>
@@ -118,20 +156,20 @@
 
     <div class="sub-h">功能地图</div>
     <div class="feat-grid">
-      <div class="feat"><div class="ico">📋</div><div class="t">标的管理</div><div class="d">新增/编辑/删除/设为当前，Excel 批量导入，各标的独立配置。</div></div>
-      <div class="feat"><div class="ico">🎛️</div><div class="t">控制台</div><div class="d">号牌输入即提交，增价/降价随时切换，投屏状态实时预览。</div></div>
-      <div class="feat"><div class="ico">🖥️</div><div class="t">大屏展示</div><div class="d">欢迎页公告+图片轮播，竞价页实时报价，支持多屏投屏。</div></div>
-      <div class="feat"><div class="ico">📦</div><div class="t">成交归档</div><div class="d">一键生成 Excel 报表、保存现场截图，按标的带时间戳归档。</div></div>
-      <div class="feat"><div class="ico">📊</div><div class="t">报表管理</div><div class="d">历史报表查看、记录撤回/删除、多页导出 Excel。</div></div>
-      <div class="feat"><div class="ico">⚙️</div><div class="t">系统设置</div><div class="d">欢迎页文字/字体、竞价页表格结构、背景一键切换。</div></div>
-      <div class="feat"><div class="ico">🔢</div><div class="t">数字软键盘</div><div class="d">无物理键盘时的报价录入方案，支持快速自定义按键。</div></div>
-      <div class="feat"><div class="ico">🔒</div><div class="t">本地数据留档</div><div class="d">数据存于本地 AuctionData 目录，按标的自动归档，定期备份即可长期存档。</div></div>
-      <div class="feat"><div class="ico">📡</div><div class="t">多副屏支持</div><div class="d">投屏架构重构，刷新流畅，支持多副屏自由切换与动态分辨率适配。</div></div>
+      <div class="feat reveal tilt"><div class="ico">📋</div><div class="t">标的管理</div><div class="d">新增/编辑/删除/设为当前，Excel 批量导入，各标的独立配置。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🎛️</div><div class="t">控制台</div><div class="d">号牌输入即提交，增价/降价随时切换，投屏状态实时预览。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🖥️</div><div class="t">大屏展示</div><div class="d">欢迎页公告+图片轮播，竞价页实时报价，支持多屏投屏。</div></div>
+      <div class="feat reveal tilt"><div class="ico">📦</div><div class="t">成交归档</div><div class="d">一键生成 Excel 报表、保存现场截图，按标的带时间戳归档。</div></div>
+      <div class="feat reveal tilt"><div class="ico">📊</div><div class="t">报表管理</div><div class="d">历史报表查看、记录撤回/删除、多页导出 Excel。</div></div>
+      <div class="feat reveal tilt"><div class="ico">⚙️</div><div class="t">系统设置</div><div class="d">欢迎页文字/字体、竞价页表格结构、背景一键切换。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🔢</div><div class="t">数字软键盘</div><div class="d">无物理键盘时的报价录入方案，支持快速自定义按键。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🔒</div><div class="t">本地数据留档</div><div class="d">数据存于本地 AuctionData 目录，按标的自动归档，定期备份即可长期存档。</div></div>
+      <div class="feat reveal tilt"><div class="ico">📡</div><div class="t">多副屏支持</div><div class="d">投屏架构重构，刷新流畅，支持多副屏自由切换与动态分辨率适配。</div></div>
     </div>
 
     <div class="sub-h">一场拍卖的完整流程</div>
     <div class="steps">
-      <div class="step">
+      <div class="step reveal tilt">
         <div class="n">01 / 会前准备</div>
         <h4>把资料管起来</h4>
         <ul>
@@ -141,7 +179,7 @@
           <li>连接副屏，预览投屏效果</li>
         </ul>
       </div>
-      <div class="step">
+      <div class="step reveal tilt">
         <div class="n">02 / 会中竞价</div>
         <h4>把报价亮出来</h4>
         <ul>
@@ -151,7 +189,7 @@
           <li>调整幅度，落槌确认成交</li>
         </ul>
       </div>
-      <div class="step">
+      <div class="step reveal tilt">
         <div class="n">03 / 会后收尾</div>
         <h4>把结果存下来</h4>
         <ul>
@@ -165,14 +203,14 @@
 
     <div class="sub-h">版本演进</div>
     <div class="timeline">
-      <div class="tl-item"><div class="v">V2.2.0 · 功能整合版</div><div class="x">功能入口统一，调整成交归档，导入导出模板精简。</div></div>
-      <div class="tl-item"><div class="v">V2.1.57 · 投屏重构</div><div class="x">刷新更流畅，支持多副屏自由切换。</div></div>
-      <div class="tl-item"><div class="v">V2.1.56 · 显示优化</div><div class="x">PDF 全屏无黑边，动态分辨率适配各种屏幕比例。</div></div>
-      <div class="tl-item"><div class="v">V2.1.55 及更早</div><div class="x">2025 年起接手二次开发，在 2015 年老系统基础上重构标的体系、竞价流程与报表管理。</div></div>
+      <div class="tl-item reveal"><div class="v">V2.2.0 · 功能整合版</div><div class="x">功能入口统一，调整成交归档，导入导出模板精简。</div></div>
+      <div class="tl-item reveal"><div class="v">V2.1.57 · 投屏重构</div><div class="x">刷新更流畅，支持多副屏自由切换。</div></div>
+      <div class="tl-item reveal"><div class="v">V2.1.56 · 显示优化</div><div class="x">PDF 全屏无黑边，动态分辨率适配各种屏幕比例。</div></div>
+      <div class="tl-item reveal"><div class="v">V2.1.55 及更早</div><div class="x">2025 年起接手二次开发，在 2015 年老系统基础上重构标的体系、竞价流程与报表管理。</div></div>
     </div>
 
     <div class="sub-h">纪</div>
-    <article class="note-card">
+    <article class="note-card reveal tilt">
       <span class="note-meta">拍卖系统二次开发 · 2025 起</span>
       <h2 class="note-title">二次开发那套老系统</h2>
       <p>原系统是 2015 年的老东西，没 UI、没架构，像"计算机刚入世"。接手后一步步补全、理顺，做成了一套能用的入门级企业系统。真正要补的，不在有没有现成办法，而在这套东西此前从没被真正做透过，只停在表面。标的数据怎么建模、竞价怎么流转、成交怎么留痕、边界怎么兜，这些最琐细的活儿，没有现成可抄，只能一点点想清楚、做扎实。也才第一次，让我原本飘着的认知落成了实的东西。</p>
@@ -185,5 +223,88 @@
       <a href="../index.html">返回主页 →</a>
     </div>
   </footer>
+<script>
+  // 鼠标光晕跟随
+  const glow = document.getElementById('cursor-glow');
+  if(glow && !window.matchMedia('(pointer:coarse)').matches){
+    let glowRaf;
+    document.addEventListener('mousemove', e => {
+      cancelAnimationFrame(glowRaf);
+      glowRaf = requestAnimationFrame(() => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+        glow.style.opacity = '1';
+      });
+    });
+    document.addEventListener('mouseleave', () => glow.style.opacity = '0');
+  }
+
+  // 全页 canvas 粒子连线
+  (function(){
+    const canvas = document.getElementById('heroCanvas');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let width, height, particles = [];
+    const isTouch = window.matchMedia('(pointer:coarse)').matches;
+    const count = isTouch ? 14 : 32;
+    const linkDist = 110;
+
+    function resize(){
+      width = window.innerWidth; height = window.innerHeight;
+      canvas.width = width * dpr; canvas.height = height * dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function create(){
+      particles = [];
+      for(let i=0;i<count;i++){
+        particles.push({
+          x:Math.random()*width, y:Math.random()*height,
+          vx:(Math.random()-.5)*.28, vy:(Math.random()-.5)*.28,
+          r:Math.random()*1.3+.5
+        });
+      }
+    }
+    function draw(){
+      ctx.clearRect(0,0,width,height);
+      for(let i=0;i<particles.length;i++){
+        const p = particles[i];
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0||p.x>width) p.vx*=-1;
+        if(p.y<0||p.y>height) p.vy*=-1;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(58,90,120,.26)'; ctx.fill();
+        for(let j=i+1;j<particles.length;j++){
+          const q = particles[j], dx=q.x-p.x, dy=q.y-p.y, d=Math.sqrt(dx*dx+dy*dy);
+          if(d<linkDist){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle='rgba(58,90,120,'+(1-d/linkDist)*.13+')'; ctx.stroke(); }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    window.addEventListener('resize',()=>{resize();create();});
+    resize(); create(); draw();
+  })();
+
+  // 滚动揭示
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i) => {
+    el.style.transitionDelay = (i % 8) * 65 + 'ms';
+    io.observe(el);
+  });
+
+  // 卡片 3D tilt
+  document.querySelectorAll('.tilt').forEach(el => {
+    const shine = document.createElement('div'); shine.className='shine'; el.appendChild(shine);
+    el.addEventListener('mousemove', e => {
+      if(!el.classList.contains('in')) return;
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - .5;
+      const y = (e.clientY - rect.top) / rect.height - .5;
+      el.style.transform = `perspective(900px) rotateX(${-y*6}deg) rotateY(${x*6}deg) translateZ(4px)`;
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  });
+</script>
 </body>
 </html>
