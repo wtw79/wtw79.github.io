@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拍卖竞价显示系统 · 让每一场拍卖清晰可控</title>
+<meta name="description" content="拍卖竞价显示系统——拍卖现场的信息展示与竞价管理工具。让现场人员少操心、让拍卖过程更专业、让成交数据不丢失。">
+<style>
+  :root {
+    --bg: #0d1524;
+    --bg-2: #111c30;
+    --bg-3: #16233b;
+    --card: #16233b;
+    --card-2: #1b2b45;
+    --gold: #d4af37;
+    --gold-light: #f0d78c;
+    --gold-dark: #a8862a;
+    --text: #e8edf5;
+    --text-sub: #9fb0c7;
+    --text-dim: #6d7f99;
+    --line: rgba(212, 175, 55, .18);
+    --line-soft: rgba(255,255,255,.07);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+    overflow-x: hidden;
+  }
+  ::selection { background: rgba(212,175,55,.3); }
+  a { color: var(--gold-light); text-decoration: none; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- 导航 ---------- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,21,36,.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-inner {
+    max-width: 1120px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 1px; color: var(--text); }
+  .brand .logo {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    display: flex; align-items: center; justify-content: center;
+    color: #0d1524; font-weight: 800; font-size: 16px;
+  }
+  .nav-links { display: flex; gap: 26px; font-size: 14px; }
+  .nav-links a { color: var(--text-sub); transition: color .2s; }
+  .nav-links a:hover { color: var(--gold-light); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 150px 0 100px;
+    background:
+      radial-gradient(1000px 500px at 85% -10%, rgba(212,175,55,.14), transparent 60%),
+      radial-gradient(800px 500px at -10% 30%, rgba(43,83,127,.35), transparent 60%),
+      linear-gradient(160deg, #0d1524 0%, #111c30 55%, #16233b 100%);
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero .eyebrow {
+    display: inline-block; font-size: 13px; letter-spacing: 4px; color: var(--gold);
+    border: 1px solid var(--line); border-radius: 20px; padding: 6px 18px; margin-bottom: 26px;
+  }
+  .hero h1 {
+    font-size: 46px; font-weight: 800; letter-spacing: 3px; line-height: 1.3;
+    margin-bottom: 18px;
+  }
+  .hero h1 .gold { color: var(--gold); }
+  .hero .sub { font-size: 17px; color: var(--text-sub); max-width: 640px; margin: 0 auto 36px; }
+  .hero .cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 12px 30px; border-radius: 8px; font-size: 15px;
+    font-weight: 600; letter-spacing: 1px; transition: all .25s; cursor: pointer;
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0d1524;
+    box-shadow: 0 8px 24px rgba(212,175,55,.25);
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(212,175,55,.35); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); }
+  .hero .stats {
+    display: flex; justify-content: center; gap: 56px; margin-top: 56px; flex-wrap: wrap;
+  }
+  .stat .num { font-size: 30px; font-weight: 800; color: var(--gold); }
+  .stat .label { font-size: 13px; color: var(--text-dim); letter-spacing: 1px; }
+
+  /* ---------- 通用章节 ---------- */
+  section { padding: 84px 0; }
+  .sec-head { text-align: center; margin-bottom: 52px; }
+  .sec-head .tag {
+    font-size: 13px; letter-spacing: 3px; color: var(--gold); margin-bottom: 10px;
+  }
+  .sec-head h2 { font-size: 30px; font-weight: 700; letter-spacing: 2px; }
+  .sec-head p { color: var(--text-sub); margin-top: 10px; font-size: 14px; }
+
+  /* ---------- 关于我 ---------- */
+  .about { background: var(--bg-2); border-bottom: 1px solid var(--line-soft); }
+  .about-grid { display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; }
+  .avatar {
+    width: 200px; height: 200px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 72px; font-weight: 800; color: #0d1524;
+    box-shadow: 0 12px 40px rgba(212,175,55,.25);
+    margin: 0 auto;
+  }
+  .about-info h3 { font-size: 24px; margin-bottom: 6px; }
+  .about-info .role { color: var(--gold); font-size: 15px; margin-bottom: 16px; }
+  .about-info p { color: var(--text-sub); font-size: 14px; margin-bottom: 20px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag-item {
+    font-size: 13px; color: var(--text-sub);
+    border: 1px solid var(--line-soft); border-radius: 6px; padding: 4px 12px;
+    background: rgba(255,255,255,.03);
+  }
+  @media (max-width: 720px) {
+    .about-grid { grid-template-columns: 1fr; text-align: center; }
+    .tags { justify-content: center; }
+  }
+
+  /* ---------- 痛点 ---------- */
+  .pain-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .pain-card {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: 12px;
+    padding: 26px 22px; transition: all .25s;
+  }
+  .pain-card:hover { transform: translateY(-4px); border-color: var(--line); }
+  .pain-card .step { font-size: 13px; color: var(--gold); letter-spacing: 2px; margin-bottom: 8px; }
+  .pain-card h4 { font-size: 17px; margin-bottom: 10px; }
+  .pain-card p { font-size: 13.5px; color: var(--text-sub); }
+  @media (max-width: 900px) { .pain-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .pain-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- 功能 ---------- */
+  .func { background: var(--bg-2); border-bottom: 1px solid var(--line-soft); }
+  .func-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .func-card {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: 12px;
+    padding: 26px 24px; transition: all .25s;
+  }
+  .func-card:hover { transform: translateY(-4px); border-color: var(--line); background: var(--card-2); }
+  .func-card .icon {
+    width: 42px; height: 42px; border-radius: 10px; margin-bottom: 16px;
+    background: rgba(212,175,55,.12); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--gold);
+  }
+  .func-card h4 { font-size: 16px; margin-bottom: 8px; }
+  .func-card .core { color: var(--gold); font-size: 12px; margin-left: 8px; letter-spacing: 1px; }
+  .func-card p { font-size: 13.5px; color: var(--text-sub); }
+  .func-card ul { list-style: none; margin-top: 10px; }
+  .func-card li { font-size: 13px; color: var(--text-dim); padding-left: 14px; position: relative; }
+  .func-card li::before { content: "·"; position: absolute; left: 2px; color: var(--gold); }
+  @media (max-width: 900px) { .func-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .func-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- 流程 ---------- */
+  .flow-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+  .flow-card {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: 12px;
+    padding: 30px 24px; position: relative;
+  }
+  .flow-card .num {
+    width: 40px; height: 40px; border-radius: 50%; margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0d1524;
+    font-weight: 800; font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .flow-card h4 { font-size: 16px; margin-bottom: 10px; }
+  .flow-card ol { padding-left: 18px; font-size: 13.5px; color: var(--text-sub); }
+  .flow-card li { margin-bottom: 6px; }
+  @media (max-width: 900px) { .flow-steps { grid-template-columns: 1fr; } }
+
+  /* ---------- 版本与数据 ---------- */
+  .ver { background: var(--bg-2); border-bottom: 1px solid var(--line-soft); }
+  .ver-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+  .ver-list { list-style: none; }
+  .ver-list li {
+    border-left: 2px solid var(--line); padding: 0 0 22px 22px; position: relative;
+  }
+  .ver-list li::before {
+    content: ""; position: absolute; left: -6px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%; background: var(--gold);
+  }
+  .ver-list li:last-child { padding-bottom: 0; }
+  .ver-list .v { font-weight: 700; color: var(--text); }
+  .ver-list .d { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+  .data-box {
+    background: var(--card); border: 1px solid var(--line-soft); border-radius: 12px; padding: 26px;
+  }
+  .data-box h4 { margin-bottom: 12px; font-size: 16px; }
+  .data-box p { font-size: 13.5px; color: var(--text-sub); margin-bottom: 12px; }
+  .data-box code {
+    display: block; background: rgba(255,255,255,.04); border: 1px solid var(--line-soft);
+    border-radius: 6px; padding: 8px 12px; font-size: 12.5px; color: var(--gold-light);
+    margin-bottom: 8px; word-break: break-all;
+  }
+  @media (max-width: 900px) { .ver-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- 联系 ---------- */
+  .contact { text-align: center; }
+  .contact h2 { font-size: 30px; margin-bottom: 14px; letter-spacing: 2px; }
+  .contact p { color: var(--text-sub); margin-bottom: 32px; }
+  .contact .links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contact-item {
+    border: 1px solid var(--line-soft); border-radius: 8px; padding: 12px 22px;
+    font-size: 14px; color: var(--text-sub); transition: all .2s; background: var(--card);
+  }
+  .contact-item:hover { border-color: var(--line); color: var(--gold-light); transform: translateY(-2px); }
+
+  footer {
+    border-top: 1px solid var(--line-soft); padding: 30px 0; text-align: center;
+    font-size: 13px; color: var(--text-dim);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand"><div class="logo">拍</div>拍卖竞价显示系统</div>
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#product">产品</a>
+      <a href="#features">功能</a>
+      <a href="#flow">流程</a>
+      <a href="#version">版本</a>
+      <a href="#contact">联系</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">拍卖现场 · 数字化解决方案</div>
+    <h1>拍卖竞价显示系统<br><span class="gold">让每一场拍卖，清晰可控</span></h1>
+    <p class="sub">面向拍卖会现场的信息展示与竞价管理工具。标的管理、大屏投屏、实时竞价、成交归档，一站式完成"从开场到落槌"的全过程。</p>
+    <div class="cta">
+      <a class="btn btn-gold" href="#product">了解产品</a>
+      <a class="btn btn-ghost" href="#contact">合作洽谈</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">2021</div><div class="label">持续迭代至今</div></div>
+      <div class="stat"><div class="num">V2.2.0</div><div class="label">当前版本</div></div>
+      <div class="stat"><div class="num">100%</div><div class="label">数据本地留档</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 关于我 ===== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">ABOUT</div>
+      <h2>关于我</h2>
+    </div>
+    <div class="about-grid">
+      <div class="avatar">W</div>
+      <div class="about-info">
+        <h3>你的名字</h3>
+        <div class="role">拍卖行业数字化工具与服务提供者</div>
+        <p>深耕拍卖现场业务数字化，专注用可靠的工具解决现场真实的麻烦——从资料管理到现场展示，从报价记录到成交留档。相信好工具的标准只有一条：现场不"掉链子"。<!-- 在这里补充一段你自己的介绍 --></p>
+        <div class="tags">
+          <span class="tag-item">拍卖数字化</span>
+          <span class="tag-item">WPF 桌面应用</span>
+          <span class="tag-item">.NET 8</span>
+          <span class="tag-item">现场大屏方案</span>
+          <span class="tag-item">数据留档</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 产品：解决什么问题 ===== -->
+<section id="product">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">PROBLEM</div>
+      <h2>解决现场的真实麻烦</h2>
+      <p>在没有这套系统之前，从会前准备到会后收尾，几乎每个环节都依赖人工</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="step">会前准备</div>
+        <h4>资料零散难管理</h4>
+        <p>公告、图片、产权资料散落在纸质文件和表格里，现场换标的要翻半天资料，容易拿错。</p>
+      </div>
+      <div class="pain-card">
+        <div class="step">会中展示</div>
+        <h4>展示全靠手工布置</h4>
+        <p>白板、纸质大字报，观众看不清、记不住，缺少现场仪式感。</p>
+      </div>
+      <div class="pain-card">
+        <div class="step">会中竞价</div>
+        <h4>报价记录靠手写</h4>
+        <p>号牌与价格人工记录，容易记错、漏记，现场出现争议时说不清。</p>
+      </div>
+      <div class="pain-card">
+        <div class="step">会后收尾</div>
+        <h4>成交留档繁琐</h4>
+        <p>报表靠人工整理、截图要手动保存，事后追溯靠翻文件，容易遗漏。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 功能总览 ===== -->
+<section class="func" id="features">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">FEATURES</div>
+      <h2>功能总览</h2>
+      <p>三个主标签页 + 若干独立窗口，构成完整功能地图</p>
+    </div>
+    <div class="func-grid">
+      <div class="func-card">
+        <div class="icon">📋</div>
+        <h4>标的管理<span class="core">核心</span></h4>
+        <p>标的数据的唯一入口，新增、编辑、删除、设为当前、导入导出。</p>
+        <ul>
+          <li>模板下载与 Excel 批量导入</li>
+          <li>自动识别历史版本列名</li>
+          <li>各标的独立配置互不影响</li>
+        </ul>
+      </div>
+      <div class="func-card">
+        <div class="icon">🎛️</div>
+        <h4>控制台<span class="core">核心</span></h4>
+        <p>现场竞价的操作中枢，号牌输入即提交，节奏完全可控。</p>
+        <ul>
+          <li>开始拍卖 / 报价录入</li>
+          <li>增价 / 降价随时切换</li>
+          <li>投屏状态实时查看与预览</li>
+        </ul>
+      </div>
+      <div class="func-card">
+        <div class="icon">🖥️</div>
+        <h4>大屏展示<span class="core">核心</span></h4>
+        <p>欢迎页展示公告资料，竞价页实时呈现报价，支持多屏投屏。</p>
+        <ul>
+          <li>PDF 公告 + 图片轮播</li>
+          <li>领先 / 出局状态直观显示</li>
+          <li>主屏操作、副屏展示</li>
+        </ul>
+      </div>
+      <div class="func-card">
+        <div class="icon">📦</div>
+        <h4>成交归档</h4>
+        <p>一个动作完成报表生成、现场截图与归档保存。</p>
+        <ul>
+          <li>自动生成 Excel 成交报表</li>
+          <li>保存竞价页现场截图</li>
+          <li>按标的归档，带时间戳</li>
+        </ul>
+      </div>
+      <div class="func-card">
+        <div class="icon">📊</div>
+        <h4>报表管理</h4>
+        <p>历史报表查看、记录撤回 / 删除、多页导出 Excel。</p>
+        <ul>
+          <li>每标的独立报表</li>
+          <li>长记录自动分页导出</li>
+          <li>报表模板可定制</li>
+        </ul>
+      </div>
+      <div class="func-card">
+        <div class="icon">⚙️</div>
+        <h4>系统设置</h4>
+        <p>系统级全局参数，对所有标的一生效。</p>
+        <ul>
+          <li>欢迎页文字 / 字体</li>
+          <li>竞价页表格结构</li>
+          <li>背景一键切换</li>
+        </ul>
+      </div>
+      <div class="func-card">
+        <div class="icon">🔢</div>
+        <h4>数字软键盘</h4>
+        <p>无物理键盘时的报价录入方案，支持快速自定义。</p>
+        <ul>
+          <li>默认数字键盘</li>
+          <li>自定义按键配置</li>
+          <li>按标的独立保存</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 业务流程 ===== -->
+<section id="flow">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">WORKFLOW</div>
+      <h2>一场拍卖的完整流程</h2>
+      <p>系统贴合现场真实节奏设计，不打断、不添乱</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-card">
+        <div class="num">1</div>
+        <h4>会前准备</h4>
+        <ol>
+          <li>标的管理中新增本场标的</li>
+          <li>完善起拍价、展示标题、公告 PDF、图片</li>
+          <li>确认大屏标题与表格样式</li>
+          <li>连接副屏，预览投屏效果</li>
+        </ol>
+      </div>
+      <div class="flow-card">
+        <div class="num">2</div>
+        <h4>会中竞价</h4>
+        <ol>
+          <li>设为当前标的，打开欢迎页与竞价页</li>
+          <li>宣布起拍，点击"开始拍卖"</li>
+          <li>录入号牌，输入即提交，大屏实时更新</li>
+          <li>随时调整竞价幅度，落槌确认成交</li>
+        </ol>
+      </div>
+      <div class="flow-card">
+        <div class="num">3</div>
+        <h4>会后收尾</h4>
+        <ol>
+          <li>核对成交记录</li>
+          <li>需要时导出 Excel</li>
+          <li>确认归档目录中的报表与截图</li>
+          <li>继续下一标的，或结束本场</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 版本与数据 ===== -->
+<section class="ver" id="version">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">VERSION</div>
+      <h2>版本与数据</h2>
+    </div>
+    <div class="ver-grid">
+      <div>
+        <h3 style="margin-bottom:18px;font-size:18px;">版本演进</h3>
+        <ul class="ver-list">
+          <li>
+            <div class="v">V2.2.00 <span style="color:var(--gold);font-size:12px;font-weight:400;">功能整合版</span></div>
+            <div class="d">功能入口统一、调整成交归档、导入导出模板精简</div>
+          </li>
+          <li>
+            <div class="v">V2.1.57 <span style="color:var(--gold);font-size:12px;font-weight:400;">修复版</span></div>
+            <div class="d">投屏架构重构——刷新更流畅、支持多副屏自由切换</div>
+          </li>
+          <li>
+            <div class="v">V2.1.56 <span style="color:var(--gold);font-size:12px;font-weight:400;">修复版</span></div>
+            <div class="d">PDF 全屏无黑边、动态分辨率适配各种屏幕比例</div>
+          </li>
+          <li>
+            <div class="v">V2.1.55 及更早</div>
+            <div class="d">2021 年起持续迭代，奠定标的体系、竞价流程、报表管理等核心能力</div>
+          </li>
+        </ul>
+      </div>
+      <div class="data-box">
+        <h4>数据安全与归档</h4>
+        <p>所有业务数据保存在本地 <code>AuctionData</code> 目录，按标的自动归档，不依赖联网、不外传。</p>
+        <code>数据\{标的名称}\ &nbsp;→&nbsp; 成交报表 / 截图 / 配置</code>
+        <code>欢迎页\{标的名称}\ &nbsp;→&nbsp; 公告 PDF / 轮播图片</code>
+        <code>竞价页\{标的名称}\ &nbsp;→&nbsp; 竞价页展示图片</code>
+        <p style="margin-top:14px;">建议定期备份 <code>AuctionData</code> 目录，作为拍卖数据的长期存档。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 联系 ===== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2>合作洽谈</h2>
+    <p>无论你是拍卖机构、行业从业者，还是对方案感兴趣的朋友，都欢迎交流。</p>
+    <div class="links">
+      <a class="contact-item" href="mailto:you@example.com">✉️ you@example.com</a>
+      <a class="contact-item" href="https://github.com/wtw79" target="_blank" rel="noopener">GitHub · wtw79</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© 2026 你的名字 · 拍卖竞价显示系统 · 让每一场拍卖清晰可控</div>
+</footer>
+
+</body>
+</html>
