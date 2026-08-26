@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" role="img" aria-label="拍卖竞价显示系统 Logo">
+  <!-- 板岩蓝方牌，白色负空间法槌 -->
+  <rect x="106" y="106" width="300" height="300" rx="70" fill="#3A5A78"/>
+  <g transform="rotate(35 256 256)" fill="#FFFFFF">
+    <rect x="242" y="160" width="28" height="200" rx="14"/>
+    <rect x="194" y="130" width="124" height="46" rx="23"/>
+  </g>
+</svg>

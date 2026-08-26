@@ -43,6 +43,8 @@
 
   .work-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow-1);margin-bottom:28px}
   .work-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .work-brand{display:flex;align-items:center;gap:18px}
+  .work-logo{width:62px;height:62px;flex-shrink:0;border-radius:16px;box-shadow:var(--shadow-1)}
   .work-badge{font-family:var(--font-mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;color:var(--accent-ink);background:var(--accent-soft);padding:6px 13px;border-radius:999px;text-transform:uppercase}
   .work-head h1{font-family:var(--font-display);font-size:clamp(30px,5vw,40px);font-weight:700;margin:14px 0 6px;line-height:1.2}
   .work-head .sub{color:var(--muted);font-size:15px}
@@ -90,6 +92,8 @@
   @media(max-width:760px){
     .feat-grid,.steps{grid-template-columns:1fr}
     .work-card{padding:28px 22px}
+    .work-brand{flex-direction:column;align-items:flex-start;gap:12px}
+    .work-logo{width:54px;height:54px}
   }
 
   /* ============ 增强: 鼠标光晕 ============ */
@@ -142,9 +146,11 @@
 
     <div class="work-card reveal tilt">
       <div class="work-head">
-        <div>
-          <span class="work-badge">核心作品 · 2015 遗产 · 2025 起二次开发</span>
-          <h1>拍卖竞价显示系统</h1>
+        <div class="work-brand">
+          <img class="work-logo" src="../assets/img/auction-logo.svg" alt="拍卖竞价显示系统 Logo">
+          <div>
+            <span class="work-badge">核心作品 · 2015 遗产 · 2025 起二次开发</span>
+            <h1>拍卖竞价显示系统</h1>
           <div class="sub">面向拍卖会现场的信息展示与竞价管理工具 · WPF / .NET 8 桌面应用</div>
         </div>
         <div class="work-links">
