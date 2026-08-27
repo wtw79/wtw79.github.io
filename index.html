@@ -234,9 +234,10 @@
     .reveal{opacity:1;transform:none}
   }
 
-  /* ============ 增强: 鼠标光晕 ============ */
-  #cursor-glow{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:9999;background:radial-gradient(circle,rgba(58,90,120,.10),transparent 70%);transform:translate(-50%,-50%);opacity:0;transition:opacity .25s;mix-blend-mode:multiply}
-  @media (pointer:coarse){#cursor-glow{display:none}}
+  /* ============ 增强: GlowCursor 光轨层 ============ */
+  #glowCursorWrap{position:fixed;inset:0;z-index:9998;pointer-events:none;overflow:hidden}
+  #glowCursorWrap canvas{width:100%;height:100%;display:block}
+  @media (pointer:coarse){#glowCursorWrap{display:none}}
 
   /* ============ 增强: Hero 波浪背景 ============ */
   .hero-inner{position:relative;z-index:2}
@@ -282,12 +283,12 @@
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
     .reveal{opacity:1;transform:none}
-    #heroWaves,#cursor-glow,.hero-visual{display:none}
+    #heroWaves,#glowCursorWrap,.hero-visual{display:none}
   }
 </style>
 </head>
 <body>
-<div id="cursor-glow"></div>
+<div id="glowCursorWrap" aria-hidden="true"></div>
 <div id="progress"></div>
 
 <!-- ===================== 导航 ===================== -->
@@ -473,6 +474,7 @@
 </footer>
 
 <script src="assets/js/gradient-waves.js"></script>
+<script src="assets/js/glow-cursor.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -517,20 +519,30 @@
   }, {threshold:0.4});
   ['about','works','skills','contact'].forEach(id => { const s = document.getElementById(id); if (s) spy.observe(s); });
 
-  // 鼠标光晕跟随
-  const glow = document.getElementById('cursor-glow');
-  if(glow && !window.matchMedia('(pointer:coarse)').matches){
-    let glowRaf;
-    document.addEventListener('mousemove', e => {
-      cancelAnimationFrame(glowRaf);
-      glowRaf = requestAnimationFrame(() => {
-        glow.style.left = e.clientX + 'px';
-        glow.style.top = e.clientY + 'px';
-        glow.style.opacity = '1';
-      });
+  // GlowCursor —— 发光光标尾迹（React Bits 原生 WebGL 移植，光效调小调细）
+  (function(){
+    const el = document.getElementById('glowCursorWrap');
+    if(!el || !window.GlowCursor) return;
+    window.__glowCursor = GlowCursor(el, {
+      color: '#67E8F9',
+      secondaryColor: '#A78BFA',
+      trailLength: 40,
+      trailWidth: 3,
+      trailTaper: 0.8,
+      followSpeed: 0.16,
+      glowIntensity: 1.2,
+      glowSpread: 0.8,
+      hotspot: 0.6,
+      brightness: 1.0,
+      opacity: 0.9,
+      pulseSpeed: 1.1,
+      noiseStrength: 0.03,
+      idleFade: true,
+      idleTimeout: 700,
+      fadeDuration: 900,
+      blendMode: 'screen'
     });
-    document.addEventListener('mouseleave', () => glow.style.opacity = '0');
-  }
+  })();
 
   // GradientWaves —— Hero 波浪背景（React Bits 原生 WebGL2 移植）
   (function(){

@@ -96,9 +96,10 @@
     .work-logo{width:54px;height:54px}
   }
 
-  /* ============ 增强: 鼠标光晕 ============ */
-  #cursor-glow{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:9999;background:radial-gradient(circle,rgba(58,90,120,.10),transparent 70%);transform:translate(-50%,-50%);opacity:0;transition:opacity .25s;mix-blend-mode:multiply}
-  @media (pointer:coarse){#cursor-glow{display:none}}
+  /* ============ 增强: GlowCursor 光轨层 ============ */
+  #glowCursorWrap{position:fixed;inset:0;z-index:9998;pointer-events:none;overflow:hidden}
+  #glowCursorWrap canvas{width:100%;height:100%;display:block}
+  @media (pointer:coarse){#glowCursorWrap{display:none}}
 
   /* ============ 增强: 全页 Canvas 背景 ============ */
   #heroCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:.32;pointer-events:none}
@@ -138,12 +139,12 @@
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
     .reveal{opacity:1;transform:none}
-    #heroCanvas,#bannerWaves,#cursor-glow{display:none}
+    #heroCanvas,#bannerWaves,#glowCursorWrap{display:none}
   }
 </style>
 </head>
 <body>
-<div id="cursor-glow"></div>
+<div id="glowCursorWrap" aria-hidden="true"></div>
 <canvas id="heroCanvas"></canvas>
   <div class="container">
     <div class="wave-banner reveal">
@@ -255,6 +256,7 @@
     </div>
   </footer>
 <script src="../assets/js/gradient-waves.js"></script>
+<script src="../assets/js/glow-cursor.js"></script>
 <script>
   // GradientWaves —— 页眉波浪背景
   (function(){
@@ -284,20 +286,30 @@
     });
   })();
 
-  // 鼠标光晕跟随
-  const glow = document.getElementById('cursor-glow');
-  if(glow && !window.matchMedia('(pointer:coarse)').matches){
-    let glowRaf;
-    document.addEventListener('mousemove', e => {
-      cancelAnimationFrame(glowRaf);
-      glowRaf = requestAnimationFrame(() => {
-        glow.style.left = e.clientX + 'px';
-        glow.style.top = e.clientY + 'px';
-        glow.style.opacity = '1';
-      });
+  // GlowCursor —— 发光光标尾迹（React Bits 原生 WebGL 移植，光效调小调细）
+  (function(){
+    const el = document.getElementById('glowCursorWrap');
+    if(!el || !window.GlowCursor) return;
+    window.__glowCursor = GlowCursor(el, {
+      color: '#67E8F9',
+      secondaryColor: '#A78BFA',
+      trailLength: 40,
+      trailWidth: 3,
+      trailTaper: 0.8,
+      followSpeed: 0.16,
+      glowIntensity: 1.2,
+      glowSpread: 0.8,
+      hotspot: 0.6,
+      brightness: 1.0,
+      opacity: 0.9,
+      pulseSpeed: 1.1,
+      noiseStrength: 0.03,
+      idleFade: true,
+      idleTimeout: 700,
+      fadeDuration: 900,
+      blendMode: 'screen'
     });
-    document.addEventListener('mouseleave', () => glow.style.opacity = '0');
-  }
+  })();
 
   // 全页 canvas 粒子连线
   (function(){
