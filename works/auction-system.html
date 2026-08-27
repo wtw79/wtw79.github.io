@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>拍卖竞价显示系统 · 详情</title>
-<meta name="description" content="拍卖竞价显示系统的详情：功能地图、会前会中会后流程、版本演进。">
+<meta name="description" content="拍卖竞价显示系统的详情：功能地图、完整流程、技术架构与版本演进。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -139,7 +139,7 @@
     <div class="sec-head">
       <div class="eyebrow">Work Detail · 作品详情</div>
       <h1 class="sec-title">拍卖竞价显示系统</h1>
-      <p class="sec-sub">面向拍卖会现场的信息展示与竞价管理工具 · WPF / .NET 8 桌面应用。下面是与它有关的所有细节。</p>
+      <p class="sec-sub">面向拍卖会现场的信息展示与竞价管理工具 · React + Electron 桌面应用，界面与业务规则完整对齐原 WPF 版。下面是与它有关的所有细节。</p>
     </div>
 
     <div class="detail-hero reveal"><img src="../assets/img/work-auction.png" alt="拍卖系统界面示意"></div>
@@ -151,7 +151,7 @@
           <div>
             <span class="work-badge">核心作品 · 2015 遗产 · 2025 起二次开发</span>
             <h1>拍卖竞价显示系统</h1>
-          <div class="sub">面向拍卖会现场的信息展示与竞价管理工具 · WPF / .NET 8 桌面应用</div>
+          <div class="sub">面向拍卖会现场的信息展示与竞价管理工具 · React + Electron 桌面应用</div>
         </div>
         <div class="work-links">
           <a href="https://github.com/wtw79" target="_blank" rel="noopener">GitHub ↗</a>
@@ -162,15 +162,16 @@
 
     <div class="sub-h">功能地图</div>
     <div class="feat-grid">
-      <div class="feat reveal tilt"><div class="ico">📋</div><div class="t">标的管理</div><div class="d">新增/编辑/删除/设为当前，Excel 批量导入，各标的独立配置。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🎛️</div><div class="t">控制台</div><div class="d">号牌输入即提交，增价/降价随时切换，投屏状态实时预览。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🖥️</div><div class="t">大屏展示</div><div class="d">欢迎页公告+图片轮播，竞价页实时报价，支持多屏投屏。</div></div>
-      <div class="feat reveal tilt"><div class="ico">📦</div><div class="t">成交归档</div><div class="d">一键生成 Excel 报表、保存现场截图，按标的带时间戳归档。</div></div>
-      <div class="feat reveal tilt"><div class="ico">📊</div><div class="t">报表管理</div><div class="d">历史报表查看、记录撤回/删除、多页导出 Excel。</div></div>
-      <div class="feat reveal tilt"><div class="ico">⚙️</div><div class="t">系统设置</div><div class="d">欢迎页文字/字体、竞价页表格结构、背景一键切换。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🔢</div><div class="t">数字软键盘</div><div class="d">无物理键盘时的报价录入方案，支持快速自定义按键。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🔒</div><div class="t">本地数据留档</div><div class="d">数据存于本地 AuctionData 目录，按标的自动归档，定期备份即可长期存档。</div></div>
-      <div class="feat reveal tilt"><div class="ico">📡</div><div class="t">多副屏支持</div><div class="d">投屏架构重构，刷新流畅，支持多副屏自由切换与动态分辨率适配。</div></div>
+      <div class="feat reveal tilt"><div class="ico">📋</div><div class="t">标的管理</div><div class="d">新增/编辑/删除/设为当前，Excel 批量导入（原子替换、失败自动回滚），各标的独立配置。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🎛️</div><div class="t">控制台</div><div class="d">号牌输入即提交，增价/减价随时切换，起拍设置与投屏控制一屏完成。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🖥️</div><div class="t">大屏展示</div><div class="d">欢迎页 PDF/图片轮播，竞价页大字卡 + 实时报价表，欢迎页与竞价页可投不同副屏。</div></div>
+      <div class="feat reveal tilt"><div class="ico">📦</div><div class="t">成交归档</div><div class="d">确认成交一键生成 Excel 报表、保存现场截图，按标的带时间戳归档，可查可溯。</div></div>
+      <div class="feat reveal tilt"><div class="ico">📊</div><div class="t">报表管理</div><div class="d">全局与单标的两种模式，记录撤回/删除，导出 Excel 备查。</div></div>
+      <div class="feat reveal tilt"><div class="ico">⚙️</div><div class="t">系统设置</div><div class="d">欢迎页/竞价页标题字体、表格结构、公式列配置，三主题全局即时切换。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🔢</div><div class="t">数字软键盘</div><div class="d">无物理键盘时的触屏报价方案，自定义布局，确认即报价。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🧮</div><div class="t">公式计算列</div><div class="d">参数列按公式自动求值（单位地价、楼面地价、溢价率），报价时实时计算。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🛡️</div><div class="t">防错设计</div><div class="d">撤回上一条应价、误删可精确还原、重新开始带快照、成交前双重校验。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🔒</div><div class="t">本地数据留档</div><div class="d">数据存于本机数据目录，不依赖网络，可整体备份迁移；单文件 exe 双击即用。</div></div>
     </div>
 
     <div class="sub-h">一场拍卖的完整流程</div>
@@ -179,20 +180,20 @@
         <div class="n">01 / 会前准备</div>
         <h4>把资料管起来</h4>
         <ul>
-          <li>标的管理中新增本场标的</li>
-          <li>完善起拍价、公告 PDF、图片</li>
-          <li>确认大屏标题与表格样式</li>
-          <li>连接副屏，预览投屏效果</li>
+          <li>标的管理中新增本场全部标的</li>
+          <li>完善起拍价、竞价幅度、公告 PDF、图片</li>
+          <li>系统设置确认大屏标题、表格结构与公式列</li>
+          <li>连接副屏，预览欢迎页投屏效果</li>
         </ul>
       </div>
       <div class="step reveal tilt">
         <div class="n">02 / 会中竞价</div>
         <h4>把报价亮出来</h4>
         <ul>
-          <li>设为当前标的，打开欢迎页</li>
-          <li>点击"开始拍卖"</li>
-          <li>录入号牌，输入即提交</li>
-          <li>调整幅度，落槌确认成交</li>
+          <li>设为当前标的，分别打开欢迎页与竞价页投屏</li>
+          <li>展示资料、宣读拍卖文件</li>
+          <li>录入号牌，输入即提交，大屏实时刷新领先</li>
+          <li>随时调整幅度，落槌确认成交（或标记流拍）</li>
         </ul>
       </div>
       <div class="step reveal tilt">
@@ -200,20 +201,32 @@
         <h4>把结果存下来</h4>
         <ul>
           <li>核对成交记录</li>
-          <li>按需导出 Excel</li>
-          <li>确认归档目录报表与截图</li>
-          <li>继续下一标的或结束本场</li>
+          <li>按需导出 Excel 备查</li>
+          <li>确认归档目录中的报表与截图</li>
+          <li>继续下一标的，或结束本场拍卖</li>
         </ul>
       </div>
     </div>
 
     <div class="sub-h">版本演进</div>
     <div class="timeline">
+      <div class="tl-item reveal"><div class="v">Web 版 · 2026 起</div><div class="x">React + Vite 重写 UI、Electron 封装桌面，新增三主题、公式列配置与投屏信息实时预览，对齐 V2.2.00。</div></div>
       <div class="tl-item reveal"><div class="v">V2.2.0 · 功能整合版</div><div class="x">功能入口统一，调整成交归档，导入导出模板精简。</div></div>
-      <div class="tl-item reveal"><div class="v">V2.1.57 · 投屏重构</div><div class="x">刷新更流畅，支持多副屏自由切换。</div></div>
+      <div class="tl-item reveal"><div class="v">V2.1.57 · 投屏重构</div><div class="x">刷新更流畅，支持多副屏自由切换，修复 PDF 清晰度。</div></div>
       <div class="tl-item reveal"><div class="v">V2.1.56 · 显示优化</div><div class="x">PDF 全屏无黑边，动态分辨率适配各种屏幕比例。</div></div>
       <div class="tl-item reveal"><div class="v">V2.1.55 及更早</div><div class="x">2025 年起接手二次开发，在 2015 年老系统基础上重构标的体系、竞价流程与报表管理。</div></div>
     </div>
+
+    <div class="sub-h">技术架构</div>
+    <div class="feat-grid">
+      <div class="feat reveal tilt"><div class="ico">🗄️</div><div class="t">主进程权威态</div><div class="d">多窗口下唯一数据源：控制台操作落库并广播，投屏窗订阅只读，崩溃重启后能立即回拉最新状态。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🪟</div><div class="t">多窗口投屏</div><div class="d">主控制窗 + 欢迎/竞价投屏窗，无边框全屏置顶，投屏窗崩溃自动重启，现场不会干等黑屏。</div></div>
+      <div class="feat reveal tilt"><div class="ico">🔀</div><div class="t">三宿主兼容</div><div class="d">同一套前端代码可在 Electron / WebView2 / 纯浏览器三种环境运行，业务代码无需区分宿主。</div></div>
+      <div class="feat reveal tilt"><div class="ico">💾</div><div class="t">本地 SQLite</div><div class="d">sql.js（WASM SQLite）持久化，增量 upsert + 僵尸清理，全部数据保存在本机数据目录。</div></div>
+      <div class="feat reveal tilt"><div class="ico">⚡</div><div class="t">公式引擎</div><div class="d">Shunting-yard 后缀求值，支持 DD/C1-C4 变量，除零与语法错误安全返回，报价时实时计算。</div></div>
+      <div class="feat reveal tilt"><div class="ico">📐</div><div class="t">等比缩放渲染</div><div class="d">大屏按 Viewbox Uniform 等比缩放，跨屏比例一致无黑边；大字卡超长数字自动缩放防溢出。</div></div>
+    </div>
+    <p class="work-desc" style="margin-top:18px">技术栈：Electron 33 · React 18 · Vite 5 · sql.js · xlsx · pdfjs-dist。electron-builder 打包为单文件便携 exe，自带 Chromium，无需安装 .NET / WebView2 运行时。</p>
 
     <div class="sub-h">纪</div>
     <article class="note-card reveal tilt">
