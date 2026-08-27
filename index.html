@@ -14,23 +14,23 @@
 <style>
   /* ============ Design Tokens ============ */
   :root{
-    --bg:#FBFAF8;
+    --bg:#FAF8F3;
     --surface:#FFFFFF;
-    --surface-2:#F5F3EF;
-    --ink:#17171C;
-    --ink-2:#45454D;
-    --muted:#8A8A92;
-    --line:#EAE6DF;
-    --line-strong:#DCD7CE;
-    --accent:#3A5A78;
-    --accent-ink:#28455C;
-    --accent-soft:rgba(58,90,120,.10);
-    --accent-tint:rgba(58,90,120,.055);
+    --surface-2:#F3F0E8;
+    --ink:#1C1B17;
+    --ink-2:#4B4941;
+    --muted:#8D8A80;
+    --line:#E8E3D7;
+    --line-strong:#D8D2C3;
+    --accent:#34516C;
+    --accent-ink:#273F55;
+    --accent-soft:rgba(52,81,108,.10);
+    --accent-tint:rgba(52,81,108,.055);
     --radius-lg:28px;
     --radius:20px;
     --radius-sm:14px;
-    --shadow-1:0 1px 2px rgba(23,23,28,.04),0 4px 14px rgba(23,23,28,.05);
-    --shadow-2:0 4px 10px rgba(23,23,28,.05),0 18px 44px rgba(23,23,28,.09);
+    --shadow-1:0 1px 2px rgba(28,27,23,.04),0 4px 14px rgba(28,27,23,.05);
+    --shadow-2:0 4px 10px rgba(28,27,23,.05),0 18px 44px rgba(28,27,23,.08);
     --ease-spring:cubic-bezier(.34,1.4,.64,1);
     --ease-std:cubic-bezier(.2,0,0,1);
     --font-display:'Noto Serif SC',serif;
@@ -61,7 +61,7 @@
 
   /* ============ 导航 ============ */
   header.nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);background:transparent;border-bottom:1px solid transparent;transition:border-color .3s ease,background .3s ease}
-  header.nav.scrolled{border-color:var(--line);background:rgba(251,250,248,.88)}
+  header.nav.scrolled{border-color:var(--line);background:rgba(250,248,243,.88)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
   .brand{font-family:var(--font-mono);font-weight:700;font-size:19px;letter-spacing:.04em;display:flex;align-items:center;gap:10px;color:#fff;transition:color .3s}
   header.nav.scrolled .brand{color:var(--ink)}
@@ -90,7 +90,7 @@
   /* ============ Hero ============ */
   .hero{position:relative;padding:176px 0 132px;overflow:hidden;background:linear-gradient(180deg,#15283B 0%,#1D3A52 58%,#24445E 100%)}
   #heroWaves{position:absolute;inset:0;z-index:0}
-  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:190px;background:linear-gradient(180deg,transparent,rgba(251,250,248,.94));z-index:1;pointer-events:none}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:190px;background:linear-gradient(180deg,transparent,rgba(250,248,243,.94));z-index:1;pointer-events:none}
   .hero-inner{position:relative;z-index:2;max-width:760px}
   .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.10);color:#E4EEF7;font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.08em;padding:6px 14px;border-radius:999px;margin-bottom:26px;border:1px solid rgba(255,255,255,.18)}
   .hero h1{font-family:var(--font-display);font-size:clamp(42px,7vw,74px);line-height:1.06;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;color:#F5F9FC}
@@ -108,8 +108,8 @@
   .btn::after{content:"";position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .15s}
   .btn:hover::after{opacity:.08}
   .btn:active{transform:scale(.97)}
-  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 20px rgba(58,90,120,.26)}
-  .btn-primary:hover{box-shadow:0 10px 30px rgba(58,90,120,.34)}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 20px rgba(52,81,108,.26)}
+  .btn-primary:hover{box-shadow:0 10px 30px rgba(52,81,108,.34)}
   .btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-strong)}
   .btn-ghost:hover{border-color:var(--ink);box-shadow:var(--shadow-1)}
 
@@ -187,7 +187,7 @@
 
   /* ============ 联系 ============ */
   .contact{background:var(--ink);color:#fff;border-radius:var(--radius-lg);padding:68px 48px;text-align:center;position:relative;overflow:hidden}
-  .contact::after{content:"";position:absolute;bottom:-130px;left:50%;transform:translateX(-50%);width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(58,90,120,.22),transparent 70%)}
+  .contact::after{content:"";position:absolute;bottom:-130px;left:50%;transform:translateX(-50%);width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(52,81,108,.22),transparent 70%)}
   .contact .eyebrow{color:var(--accent)}
   .contact .eyebrow::before{background:var(--accent)}
   .contact h2{font-family:var(--font-display);font-size:clamp(26px,4vw,38px);font-weight:700;position:relative;z-index:1}
@@ -218,8 +218,10 @@
     .nav-links a{padding:14px 0;width:100%;border-bottom:1px solid var(--line)}
     header.nav:not(.scrolled) .nav-links a{border-bottom-color:rgba(255,255,255,.10)}
     .nav-links a::after{display:none}
-    .nav-toggle{display:flex}
+    .nav-toggle{display:flex;padding:10px 12px;gap:6px}
     section{padding:84px 0}
+    .hero{padding:128px 0 96px}
+    .hero h1{font-size:clamp(36px,11vw,52px)}
     .contact{padding:50px 26px}
     .work-card{padding:28px 22px}
     .note-card{padding:28px 22px}
@@ -261,10 +263,10 @@
   .work-card:hover .work-media img{transform:scale(1.04)}
   .avatar img{transition:transform .7s var(--ease-std)}
   .avatar:hover img{transform:scale(1.04)}
-  .avatar::after{content:"";position:absolute;inset:0;background:linear-gradient(150deg,transparent 60%,rgba(58,90,120,.06));pointer-events:none}
+  .avatar::after{content:"";position:absolute;inset:0;background:linear-gradient(150deg,transparent 60%,rgba(52,81,108,.06));pointer-events:none}
 
-  /* ============ 增强: 玻璃拟态导航 ============ */
-  header.nav{background:rgba(251,250,248,.78)}
+  /* ============ 增强: 玻璃拟态导航（顶部深色区保持透明，滚动后由 .scrolled 控制） ============ */
+  header.nav{background:transparent}
 
   /* ============ 增强: 按钮光泽扫过 ============ */
   .btn-primary{position:relative;overflow:hidden}
@@ -277,7 +279,7 @@
   @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.15);opacity:.8}}
 
   /* ============ 增强: 联系区光效 ============ */
-  .contact::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(58,90,120,.18),transparent 55%);pointer-events:none}
+  .contact::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(52,81,108,.18),transparent 55%);pointer-events:none}
 
   /* ============ 增强: 减少动画偏好保护 ============ */
   @media(prefers-reduced-motion:reduce){
@@ -408,7 +410,7 @@
     <div class="sec-head reveal">
       <div class="eyebrow">Skills · 技能栈</div>
       <h2 class="sec-title">我能做什么</h2>
-      <p class="sec-sub">技术、领域与工具三个维度，构成我交付可靠现场工具的能力底座。</p>
+      <p class="sec-sub">技术、工具和正在学的方向，都是做这套系统时一点点练出来的。</p>
     </div>
     <div class="skill-groups">
       <div class="skill-group reveal tilt">
@@ -530,11 +532,11 @@
       trailWidth: 3,
       trailTaper: 0.8,
       followSpeed: 0.16,
-      glowIntensity: 1.2,
+      glowIntensity: 1.05,
       glowSpread: 0.8,
       hotspot: 0.6,
       brightness: 1.0,
-      opacity: 0.9,
+      opacity: 0.82,
       pulseSpeed: 1.1,
       noiseStrength: 0.03,
       idleFade: true,
@@ -548,9 +550,10 @@
   (function(){
     const el = document.getElementById('heroWaves');
     if(!el || !window.GradientWaves) return;
+    const isMobile = window.matchMedia('(max-width:820px)').matches || window.matchMedia('(pointer:coarse)').matches;
     window.__heroWaves = GradientWaves(el, {
-      horizonColor: '#2B4A66',
-      waveColor: '#3A5A78',
+      horizonColor: '#2A4560',
+      waveColor: '#34516C',
       crestColor: '#A9CDE8',
       speed: 0.4,
       amplitude: 2.5,
@@ -562,13 +565,13 @@
       zoom: 1.0,
       height: 5.5,
       fogDepth: 15,
-      detail: 'medium',
-      brightness: 1.05,
-      opacity: 0.92,
+      detail: isMobile ? 'low' : 'medium',
+      brightness: 1.0,
+      opacity: 0.88,
       mouseInteraction: true,
       parallaxStrength: 0.4,
       grain: true,
-      grainIntensity: 0.04
+      grainIntensity: 0.03
     });
   })();
   document.querySelectorAll('.tilt').forEach(el => {

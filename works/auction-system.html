@@ -11,14 +11,14 @@
 <link rel="preload" as="image" href="../assets/img/work-auction.png">
 <style>
   :root{
-    --bg:#FBFAF8;--surface:#FFFFFF;--surface-2:#F5F3EF;
-    --ink:#17171C;--ink-2:#45454D;--muted:#8A8A92;
-    --line:#EAE6DF;--line-strong:#DCD7CE;
-    --accent:#3A5A78;--accent-ink:#28455C;--accent-soft:rgba(58,90,120,.10);
-    --accent-tint:rgba(58,90,120,.055);
+    --bg:#FAF8F3;--surface:#FFFFFF;--surface-2:#F3F0E8;
+    --ink:#1C1B17;--ink-2:#4B4941;--muted:#8D8A80;
+    --line:#E8E3D7;--line-strong:#D8D2C3;
+    --accent:#34516C;--accent-ink:#273F55;--accent-soft:rgba(52,81,108,.10);
+    --accent-tint:rgba(52,81,108,.055);
     --radius-lg:28px;--radius:20px;--radius-sm:14px;
-    --shadow-1:0 1px 2px rgba(23,23,28,.04),0 4px 14px rgba(23,23,28,.05);
-    --shadow-2:0 4px 10px rgba(23,23,28,.05),0 18px 44px rgba(23,23,28,.09);
+    --shadow-1:0 1px 2px rgba(28,27,23,.04),0 4px 14px rgba(28,27,23,.05);
+    --shadow-2:0 4px 10px rgba(28,27,23,.05),0 18px 44px rgba(28,27,23,.08);
     --ease-spring:cubic-bezier(.34,1.4,.64,1);--ease-std:cubic-bezier(.2,0,0,1);
     --font-display:'Noto Serif SC',serif;--font-body:'Noto Sans SC',system-ui,sans-serif;
     --font-mono:'Space Grotesk','Noto Sans SC',sans-serif;--maxw:1080px;
@@ -102,7 +102,7 @@
   @media (pointer:coarse){#glowCursorWrap{display:none}}
 
   /* ============ 增强: 全页 Canvas 背景 ============ */
-  #heroCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:.32;pointer-events:none}
+  #heroCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:.16;pointer-events:none}
 
   /* ============ 增强: 波浪页眉 ============ */
   .wave-banner{position:relative;overflow:hidden;border-radius:var(--radius);margin:24px 0 28px;padding:52px 44px 46px;background:linear-gradient(180deg,#15283B 0%,#1D3A52 58%,#24445E 100%);color:#F5F9FC}
@@ -270,9 +270,10 @@
   (function(){
     const el = document.getElementById('bannerWaves');
     if(!el || !window.GradientWaves) return;
+    const isMobile = window.matchMedia('(max-width:820px)').matches || window.matchMedia('(pointer:coarse)').matches;
     window.__bannerWaves = GradientWaves(el, {
-      horizonColor: '#2B4A66',
-      waveColor: '#3A5A78',
+      horizonColor: '#2A4560',
+      waveColor: '#34516C',
       crestColor: '#A9CDE8',
       speed: 0.4,
       amplitude: 2.5,
@@ -284,13 +285,13 @@
       zoom: 1.0,
       height: 5.5,
       fogDepth: 15,
-      detail: 'medium',
-      brightness: 1.05,
-      opacity: 0.92,
+      detail: isMobile ? 'low' : 'medium',
+      brightness: 1.0,
+      opacity: 0.88,
       mouseInteraction: true,
       parallaxStrength: 0.4,
       grain: true,
-      grainIntensity: 0.04
+      grainIntensity: 0.03
     });
   })();
 
@@ -305,11 +306,11 @@
       trailWidth: 3,
       trailTaper: 0.8,
       followSpeed: 0.16,
-      glowIntensity: 1.2,
+      glowIntensity: 1.05,
       glowSpread: 0.8,
       hotspot: 0.6,
       brightness: 1.0,
-      opacity: 0.9,
+      opacity: 0.82,
       pulseSpeed: 1.1,
       noiseStrength: 0.03,
       idleFade: true,
@@ -367,10 +368,10 @@
         p.x += p.vx; p.y += p.vy;
         if(p.x<0||p.x>width) p.vx*=-1;
         if(p.y<0||p.y>height) p.vy*=-1;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(58,90,120,.26)'; ctx.fill();
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(52,81,108,.18)'; ctx.fill();
         for(let j=i+1;j<particles.length;j++){
           const q = particles[j], dx=q.x-p.x, dy=q.y-p.y, d=Math.sqrt(dx*dx+dy*dy);
-          if(d<linkDist){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle='rgba(58,90,120,'+(1-d/linkDist)*.13+')'; ctx.stroke(); }
+          if(d<linkDist){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle='rgba(52,81,108,'+(1-d/linkDist)*.10+')'; ctx.stroke(); }
         }
       }
       requestAnimationFrame(draw);
