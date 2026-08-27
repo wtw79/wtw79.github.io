@@ -1,0 +1,2 @@
+# ogl was not needed — GradientWaves uses a native WebGL2 pipeline (assets/js/gradient-waves.js)
+assets/vendor/

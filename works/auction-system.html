@@ -103,6 +103,18 @@
   /* ============ 增强: 全页 Canvas 背景 ============ */
   #heroCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:.32;pointer-events:none}
 
+  /* ============ 增强: 波浪页眉 ============ */
+  .wave-banner{position:relative;overflow:hidden;border-radius:var(--radius);margin:24px 0 28px;padding:52px 44px 46px;background:linear-gradient(180deg,#15283B 0%,#1D3A52 58%,#24445E 100%);color:#F5F9FC}
+  #bannerWaves{position:absolute;inset:0;z-index:0}
+  .wave-banner>*{position:relative;z-index:2}
+  .wave-banner .back{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:13px;font-weight:600;color:#D6E3EF;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);padding:9px 16px;border-radius:999px;margin:0 0 30px;transition:color .2s,border-color .2s,background .2s,gap .2s}
+  .wave-banner .back:hover{color:#fff;border-color:#fff;background:rgba(255,255,255,.12);gap:12px}
+  .wave-banner .eyebrow{color:#A9CDE8}
+  .wave-banner .eyebrow::before{background:#A9CDE8;opacity:.8}
+  .wave-banner .sec-title{color:#F5F9FC}
+  .wave-banner .sec-sub{color:#C4D5E4;max-width:640px}
+  @media(max-width:760px){.wave-banner{padding:34px 22px 32px}.wave-banner .back{margin-bottom:22px}}
+
   /* ============ 增强: 顶部大图 ============ */
   .detail-hero{height:340px;border-radius:var(--radius);overflow:hidden;margin-bottom:28px;border:1px solid var(--line);box-shadow:var(--shadow-2)}
   .detail-hero img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease-std)}
@@ -126,7 +138,7 @@
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
     .reveal{opacity:1;transform:none}
-    #heroCanvas,#cursor-glow{display:none}
+    #heroCanvas,#bannerWaves,#cursor-glow{display:none}
   }
 </style>
 </head>
@@ -134,9 +146,9 @@
 <div id="cursor-glow"></div>
 <canvas id="heroCanvas"></canvas>
   <div class="container">
-    <a class="back" href="../index.html">← 返回主页</a>
-
-    <div class="sec-head">
+    <div class="wave-banner reveal">
+      <div id="bannerWaves" aria-hidden="true"></div>
+      <a class="back" href="../index.html">← 返回主页</a>
       <div class="eyebrow">Work Detail · 作品详情</div>
       <h1 class="sec-title">拍卖竞价显示系统</h1>
       <p class="sec-sub">面向拍卖会现场的信息展示与竞价管理工具 · React + Electron 桌面应用，界面与业务规则完整对齐原 WPF 版。下面是与它有关的所有细节。</p>
@@ -242,7 +254,36 @@
       <a href="../index.html">返回主页 →</a>
     </div>
   </footer>
+<script src="../assets/js/gradient-waves.js"></script>
 <script>
+  // GradientWaves —— 页眉波浪背景
+  (function(){
+    const el = document.getElementById('bannerWaves');
+    if(!el || !window.GradientWaves) return;
+    window.__bannerWaves = GradientWaves(el, {
+      horizonColor: '#2B4A66',
+      waveColor: '#3A5A78',
+      crestColor: '#A9CDE8',
+      speed: 0.4,
+      amplitude: 2.5,
+      waveScale: 0.6,
+      waveRatio: 0.9,
+      swell: 35,
+      turbulence: 20,
+      tilt: 1.11,
+      zoom: 1.0,
+      height: 5.5,
+      fogDepth: 15,
+      detail: 'medium',
+      brightness: 1.05,
+      opacity: 0.92,
+      mouseInteraction: true,
+      parallaxStrength: 0.4,
+      grain: true,
+      grainIntensity: 0.04
+    });
+  })();
+
   // 鼠标光晕跟随
   const glow = document.getElementById('cursor-glow');
   if(glow && !window.matchMedia('(pointer:coarse)').matches){
