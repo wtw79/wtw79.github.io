@@ -148,9 +148,11 @@
   /* ================= 作品 ================= */
   .work-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:44px;box-shadow:var(--shadow-1);margin-bottom:28px;transition:transform .3s var(--ease-spring),box-shadow .3s,border-color .3s}
   .work-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-2);border-color:var(--line-strong)}
-  .work-media{height:260px;border-radius:calc(var(--radius) - 8px) calc(var(--radius) - 8px) 0 0;overflow:hidden;margin:-44px -44px 30px -44px;border-bottom:1px solid var(--line);position:relative}
-  .work-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease-std)}
-  .work-card:hover .work-media img{transform:scale(1.04)}
+
+  /* 作品集：法槌图作整区背景（暗色编辑风，内容浮于其上） */
+  #works{position:relative}
+  #works::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(11,13,16,.78) 0%,rgba(11,13,16,.9) 100%),url('assets/img/work-cover.jpg') center/cover no-repeat}
+  #works>*{position:relative;z-index:1}
   .work-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .work-brand{display:flex;align-items:center;gap:20px}
   .work-logo{width:62px;height:62px;flex-shrink:0;border-radius:16px;box-shadow:var(--shadow-1)}
@@ -284,16 +286,11 @@
 <!-- ===================== 关于我 ===================== -->
 <section id="about">
   <div class="container">
-    <div class="about-grid">
-      <div class="avatar reveal">
-        <span class="ring"></span>
-        <img src="assets/img/about-art.png" alt="头像占位，可替换为真实照片">
-      </div>
-      <div class="about-body reveal">
-        <div class="eyebrow">01 · About 关于我</div>
+    <div class="about-body reveal">
+      <div class="eyebrow">01 · About 关于我</div>
         <h3>在校，正在摸索自己的方向</h3>
         <p>我是 <span class="hl">wtw79</span>，[学校 · 专业] 的一名在校大学生。对计算机、算法，以及"把一个问题想透"这件事比较着迷，也喜欢动手做点真正能跑起来的东西。</p>
-        <p>从 2025 年起，我对一套 2015 年的拍卖系统做了二次开发，花了一番功夫补全、理顺，如今已是个能用的入门级企业系统。这个过程里我倒想通了不少东西——关于它该怎么搭、数据怎么流、现场的人怎么用——都记在作品集的「纪」里。</p>
+        <p>从 2025 年起，我对一套 2015 年的拍卖系统做了二次开发，花了一番功夫补全、理顺，如今已是个能用的入门级企业系统。这个过程里我倒想通了不少东西：它该怎么搭、数据怎么流、现场的人怎么用。</p>
         <p>最近在往 <span class="hl">FDE（Forward Deployed Engineer，前沿部署工程师）</span>的方向摸索，简单说，就是把已有的模型能力，接到真实的业务现场去。这中间我还在大量学习，方向也还在调；但我越来越确信：技术真正的价值，在于它能不能落到具体的人、具体的问题上。</p>
         <div class="tags">
           <span class="tag">算法 · 系统设计</span>
@@ -304,7 +301,6 @@
           <span class="tag">[某专长 待补充]</span>
         </div>
       </div>
-    </div>
   </div>
 </section>
 
@@ -321,7 +317,6 @@
   <div class="container">
     <!-- ===== 核心作品：拍卖竞价显示系统（概括） ===== -->
     <div class="work-card reveal">
-      <div class="work-media"><img src="assets/img/work-cover.jpg" alt="拍卖竞价显示系统"></div>
       <div class="work-head">
         <div class="work-brand">
           <img class="work-logo" src="assets/img/auction-logo.svg" alt="拍卖竞价显示系统 Logo">

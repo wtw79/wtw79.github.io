@@ -249,7 +249,9 @@
       canvas.height = Math.floor(height * dpr);
       gl.viewport(0, 0, canvas.width, canvas.height);
       var res = U.uResolution;
-      if (res) gl.uniform2f(res, canvas.width, canvas.height);
+      /* 点位用 CSS 像素坐标（clientX 等），uResolution 必须同为 CSS 像素，
+         否则 dpr>1 时整条光轨偏移到左上区域，无法贴合鼠标 */
+      if (res) gl.uniform2f(res, width, height);
     }
 
     function initializeTrail(x, y) {
