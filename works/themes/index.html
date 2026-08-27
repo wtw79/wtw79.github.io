@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>拍卖竞价显示系统 · UI 主题预览（Aurora / Obsidian / Glass）</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --font:'Microsoft YaHei UI','PingFang SC','Noto Sans SC',system-ui,sans-serif;
+    --blur:none; --blur-soft:none; --hover-shadow:none;
+  }
+  /* ============ 主题 01 · Aurora 现代青绿（默认） ============ */
+  body[data-theme="aurora"]{
+    --bg:linear-gradient(165deg,#F3F8F7 0%,#E8F2F2 55%,#DFEDEC 100%);
+    --card:#FFFFFF; --card-soft:rgba(255,255,255,.72); --card-2:#FFFFFF;
+    --border:#DCE8E7; --border-strong:#C3D6D5;
+    --text:#17323A; --text-2:#55717A; --text-3:#7C959D;
+    --primary:#0E7C86; --primary-deep:#0A5F66; --primary-light:#1A9AA6;
+    --primary-grad:linear-gradient(135deg,#0E7C86,#1A9AA6);
+    --accent:#6C63FF; --accent-soft:rgba(108,99,255,.12);
+    --danger:#D4513F; --success:#2F9E6B; --warning:#D99A2B; --info:#3E7FBF;
+    --r-sm:8px; --r:12px; --r-lg:18px;
+    --shadow-sm:0 1px 2px rgba(14,124,134,.07); --shadow:0 6px 20px rgba(14,124,134,.10); --shadow-lg:0 18px 48px rgba(14,124,134,.16);
+    --side-bg:linear-gradient(180deg,#0A5F66 0%,#0E7C86 60%,#0F5E63 100%);
+    --side-text:#D5F0F2; --side-text-2:#8CCBD0; --side-border:rgba(255,255,255,.14);
+    --side-active-bg:rgba(255,255,255,.96); --side-active-text:#0A5F66;
+    --side-card-bg:rgba(255,255,255,.1); --side-card-border:rgba(255,255,255,.14);
+    --lot-bg:var(--primary-grad); --banner-text:#fff; --banner-border:transparent;
+    --table-head:#F2F8F8; --table-hover:#F4FAFA; --table-lead:rgba(14,124,134,.09);
+    --stat-bg:linear-gradient(160deg,#FFFFFF,#F4FAFA);
+    --kbd-bg:linear-gradient(160deg,#F2F7F7,#EAF3F3); --kbd-key:#FFFFFF;
+    --hover-shadow:var(--shadow); --active-glow:none;
+  }
+  /* ============ 主题 02 · Obsidian 深空科技 ============ */
+  body[data-theme="obsidian"]{
+    --bg:radial-gradient(1200px 600px at 85% -10%,rgba(108,99,255,.16),transparent 60%),radial-gradient(1000px 500px at -10% 110%,rgba(62,207,207,.14),transparent 55%),#0B1020;
+    --card:#141B2E; --card-soft:rgba(20,27,46,.66); --card-2:#1A2340;
+    --border:#26304A; --border-strong:#33406B;
+    --text:#E8EDF8; --text-2:#A3B1CE; --text-3:#7585A8;
+    --primary:#3ECFCF; --primary-deep:#2FB5B5; --primary-light:#8FF3F3;
+    --primary-grad:linear-gradient(135deg,#3ECFCF,#2FB5B5);
+    --accent:#6C63FF; --accent-soft:rgba(108,99,255,.16);
+    --danger:#FF6B81; --success:#3DDC97; --warning:#FFC24B; --info:#58A6FF;
+    --r-sm:9px; --r:13px; --r-lg:18px;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.35); --shadow:0 10px 34px rgba(0,0,0,.45); --shadow-lg:0 24px 64px rgba(0,0,0,.6);
+    --side-bg:linear-gradient(180deg,#0D1428,#101830 60%,#0C1224);
+    --side-text:#9FB1D9; --side-text-2:#5F74A6; --side-border:rgba(62,207,207,.15);
+    --side-active-bg:linear-gradient(135deg,rgba(62,207,207,.16),rgba(108,99,255,.14)); --side-active-text:#8FF3F3;
+    --side-card-bg:rgba(62,207,207,.07); --side-card-border:rgba(62,207,207,.2);
+    --lot-bg:linear-gradient(120deg,rgba(108,99,255,.22),rgba(62,207,207,.18)); --banner-text:#fff; --banner-border:rgba(108,99,255,.3);
+    --table-head:#10182E; --table-hover:#161F38; --table-lead:rgba(62,207,207,.13);
+    --stat-bg:linear-gradient(165deg,#141B2E,#1A2340);
+    --kbd-bg:linear-gradient(170deg,#121A30,#0E1428); --kbd-key:#1A2340;
+    --hover-shadow:0 0 0 1px rgba(62,207,207,.35),0 0 24px rgba(62,207,207,.18); --active-glow:0 0 0 1px rgba(62,207,207,.35),0 0 24px rgba(62,207,207,.18);
+  }
+  /* ============ 主题 04 · Glassmorphism 玻璃渐变 ============ */
+  body[data-theme="glass"]{
+    --bg:linear-gradient(125deg,#6C63FF 0%,#5B6CFF 25%,#3ECFCF 55%,#4EE0C8 70%,#FF9AC1 100%);
+    --card:rgba(255,255,255,.55); --card-soft:rgba(255,255,255,.4); --card-2:rgba(255,255,255,.75);
+    --border:rgba(255,255,255,.65); --border-strong:rgba(120,130,200,.35);
+    --text:#2B2F5A; --text-2:#5E6495; --text-3:#8B90B8;
+    --primary:#5B6CFF; --primary-deep:#4A56D6; --primary-light:#3ECFCF;
+    --primary-grad:linear-gradient(135deg,#6C63FF,#5B6CFF 45%,#3ECFCF);
+    --accent:#FF6B9A; --accent-soft:rgba(255,107,154,.14);
+    --danger:#F0566E; --success:#27C08A; --warning:#F5A623; --info:#4E9CE8;
+    --r-sm:10px; --r:14px; --r-lg:20px;
+    --shadow-sm:0 4px 14px rgba(43,47,90,.08); --shadow:0 12px 40px rgba(43,47,90,.14); --shadow-lg:0 28px 70px rgba(43,47,90,.2);
+    --side-bg:rgba(255,255,255,.28); --side-text:rgba(255,255,255,.92); --side-text-2:rgba(255,255,255,.72); --side-border:rgba(255,255,255,.4);
+    --side-active-bg:rgba(255,255,255,.85); --side-active-text:#4A56D6;
+    --side-card-bg:rgba(255,255,255,.3); --side-card-border:rgba(255,255,255,.5);
+    --lot-bg:rgba(255,255,255,.35); --banner-text:#fff; --banner-border:rgba(255,255,255,.55);
+    --table-head:rgba(255,255,255,.5); --table-hover:rgba(255,255,255,.5); --table-lead:rgba(91,108,255,.12);
+    --stat-bg:rgba(255,255,255,.6);
+    --kbd-bg:rgba(255,255,255,.5); --kbd-key:rgba(255,255,255,.8);
+    --blur:blur(18px); --blur-soft:blur(12px); --hover-shadow:var(--shadow);
+  }
+
+  body{font-family:var(--font);background:var(--bg);background-attachment:fixed;color:var(--text);min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .35s ease,color .35s ease}
+  body[data-theme="glass"]::before{content:'';position:fixed;inset:0;background:radial-gradient(700px 400px at 15% 20%,rgba(255,255,255,.25),transparent 60%),radial-gradient(600px 400px at 85% 80%,rgba(255,255,255,.2),transparent 55%);pointer-events:none;z-index:0}
+
+  /* ===== 顶部主题切换器 ===== */
+  .theme-bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;padding:11px 20px;background:var(--card-soft);backdrop-filter:var(--blur-soft);-webkit-backdrop-filter:var(--blur-soft);border-bottom:1px solid var(--border);flex-wrap:wrap}
+  .theme-bar .t{font-size:14px;font-weight:800;letter-spacing:.4px;margin-right:6px;color:var(--text)}
+  .theme-bar .sub{font-size:12px;color:var(--text-2);margin-right:auto}
+  .t-btn{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px;border-radius:12px;border:1px solid var(--border-strong);background:var(--card);color:var(--text-2);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s cubic-bezier(.22,1,.36,1)}
+  .t-btn .dot{width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+  .t-btn:hover{transform:translateY(-1px);color:var(--text);box-shadow:var(--shadow-sm)}
+  .t-btn.on{color:var(--side-active-text);background:var(--side-active-bg);border-color:var(--primary);box-shadow:var(--active-glow)}
+  .d1{background:linear-gradient(135deg,#0A5F66,#1A9AA6 55%,#5DCAA5)}
+  .d2{background:linear-gradient(135deg,#0B1020,#141B2E 50%,#3ECFCF)}
+  .d4{background:linear-gradient(135deg,#6C63FF,#3ECFCF 50%,#FF6B9A)}
+
+  .app{display:grid;grid-template-columns:232px 1fr;min-height:calc(100vh - 62px);padding:18px;max-width:1500px;margin:0 auto;gap:0;position:relative;z-index:1}
+  /* ===== 侧栏 ===== */
+  .sidebar{background:var(--side-bg);color:#fff;border-radius:20px;padding:18px 14px;display:flex;flex-direction:column;border:1px solid var(--side-border);box-shadow:var(--shadow-lg);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);overflow:hidden}
+  .brand{display:flex;align-items:center;gap:12px;padding:8px 10px 18px}
+  .brand .logo{width:40px;height:40px;border-radius:12px;background:var(--primary-grad);color:#fff;display:grid;place-items:center;font-weight:800;font-size:19px;box-shadow:0 6px 18px rgba(0,0,0,.22)}
+  .brand .name{font-size:15px;font-weight:800;letter-spacing:.4px;color:#fff}
+  .brand .sub{font-size:11px;color:var(--side-text-2);margin-top:1px}
+  .nav{display:flex;flex-direction:column;gap:5px;margin-top:6px}
+  .nav-item{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:11px;color:var(--side-text);font-size:14px;cursor:pointer;transition:all .2s cubic-bezier(.22,1,.36,1);border:1px solid transparent}
+  .nav-item .ico{width:20px;height:20px;display:grid;place-items:center;font-size:15px;opacity:.92}
+  .nav-item:hover{background:rgba(255,255,255,.1);color:#fff;transform:translateX(2px)}
+  .nav-item.active{background:var(--side-active-bg);color:var(--side-active-text);font-weight:700;box-shadow:var(--shadow-sm)}
+  .nav-item .badge{margin-left:auto;background:var(--accent);color:#fff;font-size:11px;font-weight:700;border-radius:20px;padding:1px 9px}
+  .side-foot{margin-top:auto;padding-top:14px;border-top:1px solid var(--side-border)}
+  .ver{font-size:11px;color:var(--side-text-2);text-align:center}
+  .side-card{margin-top:10px;background:var(--side-card-bg);border:1px solid var(--side-card-border);border-radius:12px;padding:11px 12px;font-size:12px;color:var(--side-text);line-height:1.6}
+  .side-card b{display:block;color:#fff;font-size:13px;margin-bottom:2px}
+
+  /* ===== 主区 ===== */
+  .main{display:flex;flex-direction:column;gap:16px;padding-left:18px;min-width:0}
+  .appbar{display:flex;align-items:center;gap:14px;padding:13px 20px;background:var(--card-soft);backdrop-filter:var(--blur-soft);-webkit-backdrop-filter:var(--blur-soft);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow-sm);flex-wrap:wrap;transition:background .3s ease}
+  .crumb{font-size:13px;color:var(--text-3)}
+  .crumb b{color:var(--text);font-size:15px;font-weight:800}
+  .spacer{flex:1}
+  .clock{font-family:'Consolas','JetBrains Mono',monospace;font-variant-numeric:tabular-nums;font-size:14px;font-weight:600;color:var(--text-2);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 14px}
+  .stage-pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;padding:7px 15px;border-radius:22px;background:rgba(47,158,107,.12);color:var(--success);border:1px solid rgba(47,158,107,.25)}
+  .stage-pill .dot{width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px rgba(47,158,107,.16);animation:pulse 1.8s ease infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+
+  .lot-banner{display:flex;align-items:center;gap:11px;background:var(--lot-bg);color:var(--banner-text);border-radius:14px;padding:10px 18px;border:1px solid var(--banner-border);box-shadow:0 10px 26px rgba(0,0,0,.16);flex-wrap:wrap}
+  .lot-banner .tag-min{font-size:11px;font-weight:800;background:rgba(255,255,255,.2);padding:2px 10px;border-radius:7px}
+  .lot-banner .v{font-weight:700;font-size:14px}
+  .lot-banner .go{margin-left:auto;font-size:12px;font-weight:600;background:rgba(255,255,255,.16);padding:4px 13px;border-radius:20px;cursor:pointer;transition:all .2s}
+  .lot-banner .go:hover{background:#fff;color:var(--primary-deep)}
+
+  .panel{background:var(--card);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:20px;transition:background .3s ease}
+  .panel-h{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .panel-h .bar{width:5px;height:20px;border-radius:3px;background:var(--primary-grad)}
+  .panel-h h3{font-size:15px;font-weight:800;color:var(--text)}
+  .panel-h .hint{margin-left:auto;font-size:12px;color:var(--text-3)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:980px){.grid2{grid-template-columns:1fr}}
+
+  /* ===== 按钮 ===== */
+  .btns{display:flex;flex-wrap:wrap;gap:11px;align-items:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:44px;padding:0 20px;border-radius:11px;font-size:14px;font-weight:700;font-family:var(--font);border:1px solid var(--border-strong);background:var(--card);color:var(--text);cursor:pointer;transition:all .2s cubic-bezier(.22,1,.36,1);white-space:nowrap}
+  .btn:hover{transform:translateY(-1px);box-shadow:var(--hover-shadow);border-color:var(--primary);color:var(--primary)}
+  .btn:active{transform:translateY(0) scale(.98)}
+  .btn--primary{background:var(--primary-grad);border-color:transparent;color:#fff;box-shadow:0 8px 20px rgba(14,124,134,.28)}
+  .btn--primary:hover{filter:brightness(1.06);color:#fff;box-shadow:0 12px 26px rgba(0,0,0,.22)}
+  .btn--danger{background:rgba(212,81,63,.1);border-color:var(--danger);color:var(--danger)}
+  .btn--danger:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+  .btn--ghost{background:transparent;border-color:transparent;color:var(--text-2)}
+  .btn--ghost:hover{background:var(--card-soft);border-color:var(--border);color:var(--text)}
+  .btn--sm{height:34px;padding:0 13px;font-size:13px;border-radius:9px}
+  .btn--lg{height:56px;padding:0 28px;font-size:16px;border-radius:13px}
+  .btn:disabled{opacity:.45;cursor:not-allowed;pointer-events:none}
+  .btn .ico{font-size:15px}
+
+  /* ===== 输入 ===== */
+  .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field label{font-size:12px;color:var(--text-2);font-weight:700}
+  .input{height:46px;padding:0 14px;border:1.5px solid var(--border-strong);border-radius:11px;background:var(--card);font-family:var(--font);font-size:14px;color:var(--text);transition:all .2s cubic-bezier(.22,1,.36,1);width:100%}
+  .input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(91,108,255,.13)}
+  .input::placeholder{color:var(--text-3)}
+  .input--lg{height:58px;font-size:20px;font-weight:800;text-align:center;font-variant-numeric:tabular-nums;border-radius:13px}
+  .input--lg:focus{box-shadow:0 0 0 5px rgba(91,108,255,.16),0 10px 26px rgba(0,0,0,.1)}
+
+  /* ===== 标签 ===== */
+  .tags{display:flex;flex-wrap:wrap;gap:9px}
+  .tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 12px;border-radius:22px;border:1px solid transparent}
+  .tag--teal{background:rgba(14,124,134,.1);color:var(--primary);border-color:rgba(14,124,134,.22)}
+  .tag--green{background:rgba(47,158,107,.12);color:var(--success);border-color:rgba(47,158,107,.26)}
+  .tag--amber{background:rgba(217,154,43,.12);color:var(--warning);border-color:rgba(217,154,43,.28)}
+  .tag--red{background:rgba(212,81,63,.1);color:var(--danger);border-color:rgba(212,81,63,.24)}
+  .tag--blue{background:rgba(62,127,191,.1);color:var(--info);border-color:rgba(62,127,191,.24)}
+  .tag--gray{background:rgba(85,113,122,.08);color:var(--text-2);border-color:var(--border)}
+  .tag .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+  /* ===== 统计卡 ===== */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+  .stat{background:var(--stat-bg);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:16px;padding:17px 18px;box-shadow:var(--shadow-sm);transition:all .25s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden}
+  .stat::after{content:'';position:absolute;right:-24px;top:-24px;width:90px;height:90px;border-radius:50%;background:var(--primary-grad);opacity:.07}
+  .stat:hover{transform:translateY(-3px);box-shadow:var(--hover-shadow)}
+  .stat .k{font-size:12px;color:var(--text-2);font-weight:700}
+  .stat .v{font-size:26px;font-weight:800;margin-top:5px;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+  .stat .v small{font-size:13px;font-weight:600;color:var(--text-3);margin-left:3px}
+  .stat .d{font-size:11px;color:var(--success);margin-top:4px;font-weight:700}
+  .stat.up .v{color:var(--primary)}
+
+  /* ===== 表格 ===== */
+  .tbl-wrap{overflow:auto;border:1px solid var(--border);border-radius:14px;background:var(--card)}
+  table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+  .tbl th{background:var(--table-head);color:var(--text-2);font-weight:700;font-size:12.5px;text-align:left;padding:11px 14px;border-bottom:1.5px solid var(--border-strong);white-space:nowrap}
+  .tbl td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text)}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl tbody tr{transition:background .15s}
+  .tbl tbody tr:hover{background:var(--table-hover)}
+  .tbl tr.lead{background:linear-gradient(90deg,var(--table-lead),transparent)}
+  .tbl tr.lead td{font-weight:700}
+  .tbl .num{font-variant-numeric:tabular-nums;font-weight:600}
+
+  /* ===== 投屏大字卡 ===== */
+  .kbds{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+  @media(max-width:760px){.kbds{grid-template-columns:1fr}}
+  .kbd-card{border:1px solid var(--border);border-radius:16px;background:var(--stat-bg);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;flex-direction:column;gap:5px;justify-content:center;align-items:center;text-align:center;transition:all .25s cubic-bezier(.22,1,.36,1)}
+  .kbd-card:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow)}
+  .kbd-card .kl{font-size:15px;color:var(--text-2);font-weight:700;letter-spacing:1px}
+  .kbd-card .kv{font-size:30px;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums;line-height:1.15}
+  .kbd-card.latest{border-color:var(--primary);border-width:2px;background:linear-gradient(150deg,var(--accent-soft),var(--primary-grad) 220%);box-shadow:var(--active-glow)}
+  .kbd-card.latest .kv{color:var(--primary-deep)}
+  .kbd-card.latest .kl{color:var(--primary)}
+
+  /* ===== 软键盘 ===== */
+  .softkbd{background:var(--kbd-bg);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--border-strong);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:12px;width:300px;margin:0 auto}
+  .sk-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;padding:0 3px}
+  .sk-top strong{font-size:13px;color:var(--text);font-weight:700}
+  .sk-x{border:1px solid var(--border-strong);background:var(--kbd-key);color:var(--primary);font-size:12px;padding:4px 13px;border-radius:9px;cursor:pointer;transition:all .2s}
+  .sk-x:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .sk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+  .sk-key{height:42px;min-width:42px;border:1px solid var(--border-strong);border-radius:11px;background:var(--kbd-key);font-size:13px;font-weight:700;cursor:pointer;color:var(--text);display:flex;align-items:center;justify-content:center;font-family:var(--font);transition:all .15s cubic-bezier(.22,1,.36,1)}
+  .sk-key:hover{background:var(--card-2);border-color:var(--primary);transform:translateY(-1px)}
+  .sk-key:active{transform:scale(.96)}
+  .sk-key.sk-ok{background:var(--primary-grad);color:#fff;border-color:transparent;box-shadow:0 5px 14px rgba(0,0,0,.2)}
+  .sk-key.sk-clr{background:rgba(212,81,63,.1);color:var(--danger);border-color:rgba(212,81,63,.25)}
+  .sk-key.sk-back{background:var(--card-2);color:var(--text-2);border-color:var(--border)}
+  .sk-key.sk-switch{background:var(--accent-soft);color:var(--accent);border-color:var(--border-strong)}
+
+  .foot{text-align:center;padding:8px 0 24px;color:var(--text-3);font-size:12px}
+  .foot a{color:var(--primary);font-weight:600}
+</style>
+</head>
+<body data-theme="aurora">
+<!-- ===== 主题切换器 ===== -->
+<div class="theme-bar">
+  <span class="t">UI 主题预览</span>
+  <span class="sub">切换主题即时换肤，结构不变</span>
+  <button class="t-btn on" data-theme-key="aurora" onclick="setTheme('aurora')"><i class="dot d1"></i>01 · Aurora 现代青绿</button>
+  <button class="t-btn" data-theme-key="obsidian" onclick="setTheme('obsidian')"><i class="dot d2"></i>02 · Obsidian 深空科技</button>
+  <button class="t-btn" data-theme-key="glass" onclick="setTheme('glass')"><i class="dot d4"></i>04 · Glassmorphism 玻璃渐变</button>
+</div>
+
+<div class="app">
+  <!-- 侧栏 -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">拍</div>
+      <div><div class="name">拍卖竞价系统</div><div class="sub">Auction Display v2.2.0</div></div>
+    </div>
+    <nav class="nav">
+      <div class="nav-item active"><span class="ico">◉</span>控制台<span class="badge">进行中</span></div>
+      <div class="nav-item"><span class="ico">▤</span>标的管理</div>
+      <div class="nav-item"><span class="ico">◐</span>投屏信息</div>
+      <div class="nav-item"><span class="ico">≣</span>系统设置</div>
+      <div class="nav-item"><span class="ico">▣</span>报表</div>
+    </nav>
+    <div class="side-foot">
+      <div class="side-card"><b>投屏状态</b>竞价页 · 已投屏到 副屏 1</div>
+      <div class="ver">v2.2.0 · 主题预览</div>
+    </div>
+  </aside>
+
+  <!-- 主区 -->
+  <main class="main">
+    <div class="appbar">
+      <div class="crumb">控制台 / <b>当前标的</b></div>
+      <div class="stage-pill"><span class="dot"></span>竞价进行中</div>
+      <div class="spacer"></div>
+      <span class="clock">16:17:54</span>
+    </div>
+
+    <div class="lot-banner">
+      <span class="tag-min">LOT 023</span>
+      <span class="v">清乾隆青花瓷瓶 · 起拍价 ¥80,000</span>
+      <span class="go">切换到竞价操作 →</span>
+    </div>
+
+    <div class="grid2">
+      <div class="panel">
+        <div class="panel-h"><span class="bar"></span><h3>按钮 Button</h3><span class="hint">Default / Hover / Active / Disabled</span></div>
+        <div class="btns">
+          <button class="btn btn--primary"><span class="ico">✓</span>主操作</button>
+          <button class="btn">次要按钮</button>
+          <button class="btn btn--danger">危险</button>
+          <button class="btn btn--ghost">幽灵</button>
+          <button class="btn btn--sm">小按钮</button>
+          <button class="btn btn--lg">大按钮</button>
+          <button class="btn btn--primary" disabled>已禁用</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><span class="bar"></span><h3>输入 Input</h3><span class="hint">Focus 彩色光圈</span></div>
+        <div class="fields">
+          <div class="field"><label>号牌</label><input class="input" placeholder="输入竞买号牌" value="018"></div>
+          <div class="field"><label>应价（元）</label><input class="input" placeholder="输入应价金额"></div>
+        </div>
+        <div style="margin-top:14px"><div class="field"><label>大号数字输入（聚焦）</label><input class="input input--lg" value="88,000"></div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-h"><span class="bar"></span><h3>标签 Tag</h3><span class="hint">状态语义色</span></div>
+      <div class="tags">
+        <span class="tag tag--teal"><span class="dot"></span>领先</span>
+        <span class="tag tag--green"><span class="dot"></span>成交</span>
+        <span class="tag tag--amber"><span class="dot"></span>待确认</span>
+        <span class="tag tag--red"><span class="dot"></span>出局</span>
+        <span class="tag tag--blue"><span class="dot"></span>信息</span>
+        <span class="tag tag--gray">普通</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-h"><span class="bar"></span><h3>关键数据卡</h3><span class="hint">hover 上浮</span></div>
+      <div class="stats">
+        <div class="stat"><div class="k">当前应价</div><div class="v up">¥90,000<small>元</small></div><div class="d">↑ 较上轮 +2,000</div></div>
+        <div class="stat"><div class="k">领先号牌</div><div class="v up">018</div><div class="d">领先中</div></div>
+        <div class="stat"><div class="k">已报轮次</div><div class="v">12</div><div class="d">共 12 轮</div></div>
+        <div class="stat"><div class="k">竞价幅度</div><div class="v">5,000</div><div class="d">增价模式</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-h"><span class="bar"></span><h3>报价记录表</h3><span class="hint">行 hover 高亮 · 领先行强调</span></div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>轮次</th><th>号牌</th><th style="text-align:right">报价</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody>
+            <tr class="lead"><td>12</td><td>018</td><td class="num" style="text-align:right">¥90,000</td><td><span class="tag tag--teal"><span class="dot"></span>领先</span></td><td><button class="btn btn--sm btn--ghost">删除</button></td></tr>
+            <tr><td>11</td><td>031</td><td class="num" style="text-align:right">¥88,000</td><td><span class="tag tag--gray">出局</span></td><td><button class="btn btn--sm btn--ghost">删除</button></td></tr>
+            <tr><td>10</td><td>007</td><td class="num" style="text-align:right">¥85,000</td><td><span class="tag tag--gray">出局</span></td><td><button class="btn btn--sm btn--ghost">删除</button></td></tr>
+            <tr><td>9</td><td>018</td><td class="num" style="text-align:right">¥82,000</td><td><span class="tag tag--gray">出局</span></td><td><button class="btn btn--sm btn--ghost">删除</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="panel">
+        <div class="panel-h"><span class="bar"></span><h3>投屏大字卡 2×2</h3><span class="hint">最新应价强调</span></div>
+        <div class="kbds">
+          <div class="kbd-card"><div class="kl">起拍价</div><div class="kv">¥80,000</div></div>
+          <div class="kbd-card"><div class="kl">当前号牌</div><div class="kv">018</div></div>
+          <div class="kbd-card"><div class="kl">增价幅度</div><div class="kv">¥5,000</div></div>
+          <div class="kbd-card latest"><div class="kl">最新应价</div><div class="kv">¥90,000</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><span class="bar"></span><h3>数字软键盘</h3><span class="hint">快速 / 默认 双模式</span></div>
+        <div class="softkbd">
+          <div class="sk-top"><strong>输入号牌 · 快速</strong><button class="sk-x">收起</button></div>
+          <div class="sk-grid">
+            <button class="sk-key sk-clr">清空 ✕</button><button class="sk-key sk-ok">确定</button><button class="sk-key sk-back">⌫</button><button class="sk-key sk-switch">切换</button>
+            <button class="sk-key">1</button><button class="sk-key">2</button><button class="sk-key">3</button><button class="sk-key sk-back">⌫</button>
+            <button class="sk-key">4</button><button class="sk-key">5</button><button class="sk-key">6</button><button class="sk-key">+</button>
+            <button class="sk-key">7</button><button class="sk-key">8</button><button class="sk-key">9</button><button class="sk-key">-</button>
+            <button class="sk-key" style="grid-column:span 2">0</button><button class="sk-key">.</button><button class="sk-key sk-ok">确定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">3 版主题（Aurora / Obsidian / Glass）同一组件结构，仅配色与质感切换 · 独立单页：<a href="01-现代青绿-aurora.html">01</a> / <a href="02-深空科技-obsidian.html">02</a> / <a href="03-香槟商务-champagne.html">03</a> / <a href="04-玻璃渐变-glass.html">04</a></div>
+  </main>
+</div>
+
+<script>
+  function setTheme(key) {
+    document.body.dataset.theme = key
+    try { localStorage.setItem('ui-theme', key) } catch (e) {}
+    document.querySelectorAll('.t-btn').forEach(function (b) {
+      b.classList.toggle('on', b.getAttribute('data-theme-key') === key)
+    })
+  }
+  ;(function init() {
+    var saved = null
+    try { saved = localStorage.getItem('ui-theme') } catch (e) {}
+    var q = new URLSearchParams(location.search).get('theme') // 支持 ?theme=aurora|obsidian|glass
+    var key = q || saved
+    if (key && ['aurora', 'obsidian', 'glass'].indexOf(key) !== -1) setTheme(key)
+  })()
+</script>
+</body>
+</html>
