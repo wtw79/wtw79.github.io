@@ -150,6 +150,14 @@
   @media(max-width:900px){.theme-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:520px){.theme-grid{grid-template-columns:1fr}}
 
+  /* ============ 精简版：chips 与源码块 ============ */
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{font-size:13px;font-weight:500;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);padding:7px 14px;border-radius:999px;transition:.2s}
+  .chip:hover{background:var(--accent-tint);border-color:var(--accent);color:var(--accent-ink)}
+  .repo-block{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px 34px;box-shadow:var(--shadow-1)}
+  .repo-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:15px;font-weight:600;color:var(--accent-ink);border:1px solid var(--line-strong);background:var(--surface);padding:12px 20px;border-radius:12px;transition:.2s}
+  .repo-link:hover{border-color:var(--accent);background:var(--accent-tint)}
+
   /* ============ 增强: reveal ============ */
   .reveal{opacity:0;transform:translateY(28px) scale(.985);transition:opacity .8s var(--ease-std),transform .8s var(--ease-spring)}
   .reveal.in{opacity:1;transform:none}
@@ -225,73 +233,17 @@
       <p class="work-desc">一个面向拍卖现场的竞价显示系统：标的管理、大屏投屏、实时竞价、成交归档，一站式完成"从开场到落槌"的全过程。</p>
     </div>
 
-    <div class="sub-h">功能地图</div>
-    <div class="feat-grid">
-      <div class="feat reveal tilt"><div class="ico">📋</div><div class="t">标的管理</div><div class="d">新增/编辑/删除/设为当前，Excel 批量导入（原子替换、失败自动回滚），各标的独立配置。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🎛️</div><div class="t">控制台</div><div class="d">号牌输入即提交，增价/减价随时切换，起拍设置与投屏控制一屏完成。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🖥️</div><div class="t">大屏展示</div><div class="d">欢迎页 PDF/图片轮播，竞价页大字卡 + 实时报价表，欢迎页与竞价页可投不同副屏。</div></div>
-      <div class="feat reveal tilt"><div class="ico">📦</div><div class="t">成交归档</div><div class="d">确认成交一键生成 Excel 报表、保存现场截图，按标的带时间戳归档，可查可溯。</div></div>
-      <div class="feat reveal tilt"><div class="ico">📊</div><div class="t">报表管理</div><div class="d">全局与单标的两种模式，记录撤回/删除，导出 Excel 备查。</div></div>
-      <div class="feat reveal tilt"><div class="ico">⚙️</div><div class="t">系统设置</div><div class="d">欢迎页/竞价页标题字体、表格结构、公式列配置，三主题全局即时切换。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🔢</div><div class="t">数字软键盘</div><div class="d">无物理键盘时的触屏报价方案，自定义布局，确认即报价。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🧮</div><div class="t">公式计算列</div><div class="d">参数列按公式自动求值（单位地价、楼面地价、溢价率），报价时实时计算。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🛡️</div><div class="t">防错设计</div><div class="d">撤回上一条应价、误删可精确还原、重新开始带快照、成交前双重校验。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🔒</div><div class="t">本地数据留档</div><div class="d">数据存于本机数据目录，不依赖网络，可整体备份迁移；单文件 exe 双击即用。</div></div>
+    <div class="sub-h">功能亮点</div>
+    <p class="work-desc">标的管理、大屏投屏、实时竞价、成交归档，一站式覆盖拍卖会从开场到落槌的全过程。报价输入即提交，公式列（单位地价、楼面地价、溢价率）实时计算；误操作可撤回、可恢复。</p>
+    <div class="chips" style="margin-top:18px">
+      <span class="chip">标的管理</span>
+      <span class="chip">大屏投屏</span>
+      <span class="chip">实时竞价</span>
+      <span class="chip">成交归档</span>
+      <span class="chip">公式计算列</span>
+      <span class="chip">防错设计</span>
     </div>
-
-    <div class="sub-h">一场拍卖的完整流程</div>
-    <div class="steps">
-      <div class="step reveal tilt">
-        <div class="n">01 / 会前准备</div>
-        <h4>把资料管起来</h4>
-        <ul>
-          <li>标的管理中新增本场全部标的</li>
-          <li>完善起拍价、竞价幅度、公告 PDF、图片</li>
-          <li>系统设置确认大屏标题、表格结构与公式列</li>
-          <li>连接副屏，预览欢迎页投屏效果</li>
-        </ul>
-      </div>
-      <div class="step reveal tilt">
-        <div class="n">02 / 会中竞价</div>
-        <h4>把报价亮出来</h4>
-        <ul>
-          <li>设为当前标的，分别打开欢迎页与竞价页投屏</li>
-          <li>展示资料、宣读拍卖文件</li>
-          <li>录入号牌，输入即提交，大屏实时刷新领先</li>
-          <li>随时调整幅度，落槌确认成交（或标记流拍）</li>
-        </ul>
-      </div>
-      <div class="step reveal tilt">
-        <div class="n">03 / 会后收尾</div>
-        <h4>把结果存下来</h4>
-        <ul>
-          <li>核对成交记录</li>
-          <li>按需导出 Excel 备查</li>
-          <li>确认归档目录中的报表与截图</li>
-          <li>继续下一标的，或结束本场拍卖</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="sub-h">版本演进</div>
-    <div class="timeline">
-      <div class="tl-item reveal"><div class="v">Web 版 · 2026 起</div><div class="x">React + Vite 重写 UI、Electron 封装桌面，新增三主题、公式列配置与投屏信息实时预览，对齐 V2.2.00。</div></div>
-      <div class="tl-item reveal"><div class="v">V2.2.0 · 功能整合版</div><div class="x">功能入口统一，调整成交归档，导入导出模板精简。</div></div>
-      <div class="tl-item reveal"><div class="v">V2.1.57 · 投屏重构</div><div class="x">刷新更流畅，支持多副屏自由切换，修复 PDF 清晰度。</div></div>
-      <div class="tl-item reveal"><div class="v">V2.1.56 · 显示优化</div><div class="x">PDF 全屏无黑边，动态分辨率适配各种屏幕比例。</div></div>
-      <div class="tl-item reveal"><div class="v">V2.1.55 及更早</div><div class="x">2025 年起接手二次开发，在 2015 年老系统基础上重构标的体系、竞价流程与报表管理。</div></div>
-    </div>
-
-    <div class="sub-h">技术架构</div>
-    <div class="feat-grid">
-      <div class="feat reveal tilt"><div class="ico">🗄️</div><div class="t">主进程权威态</div><div class="d">多窗口下唯一数据源：控制台操作落库并广播，投屏窗订阅只读，崩溃重启后能立即回拉最新状态。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🪟</div><div class="t">多窗口投屏</div><div class="d">主控制窗 + 欢迎/竞价投屏窗，无边框全屏置顶，投屏窗崩溃自动重启，现场不会干等黑屏。</div></div>
-      <div class="feat reveal tilt"><div class="ico">🔀</div><div class="t">三宿主兼容</div><div class="d">同一套前端代码可在 Electron / WebView2 / 纯浏览器三种环境运行，业务代码无需区分宿主。</div></div>
-      <div class="feat reveal tilt"><div class="ico">💾</div><div class="t">本地 SQLite</div><div class="d">sql.js（WASM SQLite）持久化，增量 upsert + 僵尸清理，全部数据保存在本机数据目录。</div></div>
-      <div class="feat reveal tilt"><div class="ico">⚡</div><div class="t">公式引擎</div><div class="d">Shunting-yard 后缀求值，支持 DD/C1-C4 变量，除零与语法错误安全返回，报价时实时计算。</div></div>
-      <div class="feat reveal tilt"><div class="ico">📐</div><div class="t">等比缩放渲染</div><div class="d">大屏按 Viewbox Uniform 等比缩放，跨屏比例一致无黑边；大字卡超长数字自动缩放防溢出。</div></div>
-    </div>
-    <p class="work-desc" style="margin-top:18px">技术栈：Electron 33 · React 18 · Vite 5 · sql.js · xlsx · pdfjs-dist。electron-builder 打包为单文件便携 exe，自带 Chromium，无需安装 .NET / WebView2 运行时。</p>
+    <p class="work-desc" style="margin-top:18px">技术：Electron + React + Vite + sql.js。数据全本地保存，单文件 exe 双击即用；多屏投屏、投屏窗崩溃自动恢复，同一套代码兼容 Electron / WebView2 / 浏览器。</p>
 
     <div class="sub-h">主题皮肤</div>
     <div class="theme-grid">
@@ -329,12 +281,11 @@
       </a>
     </div>
 
-    <div class="sub-h">纪</div>
-    <article class="note-card reveal tilt">
-      <span class="note-meta">拍卖系统二次开发 · 2025 起</span>
-      <h2 class="note-title">二次开发那套老系统</h2>
-      <p>原系统是 2015 年的老东西，没 UI、没架构，像"计算机刚入世"。接手后一步步补全、理顺，做成了一套能用的入门级企业系统。真正要补的，不在有没有现成办法，而在这套东西此前从没被真正做透过，只停在表面。标的数据怎么建模、竞价怎么流转、成交怎么留痕、边界怎么兜，这些最琐细的活儿，没有现成可抄，只能一点点想清楚、做扎实。也才第一次，让我原本飘着的认知落成了实的东西。</p>
-    </article>
+    <div class="sub-h">源码</div>
+    <div class="repo-block reveal">
+      <p class="work-desc" style="margin:0 0 16px">完整源码与项目说明放在 GitHub，欢迎去看看：</p>
+      <a class="repo-link" href="https://github.com/wtw79/pm_Web_App_Showcase" target="_blank" rel="noopener">github.com/wtw79/pm_Web_App_Showcase ↗</a>
+    </div>
   </div>
 
   <footer>
