@@ -546,6 +546,22 @@
       useWindowScroll: true
     });
   })();
+
+  // 轻量视差：Hero 波浪随滚动慢滚（背景层次感，克制版；借鉴 Instant 全屏视差思路）
+  (function(){
+    const waves = document.getElementById('heroWaves');
+    if(!waves || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if(ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = Math.min(window.scrollY, window.innerHeight);
+        waves.style.transform = 'translate3d(0,' + (y * 0.22) + 'px,0)';
+        ticking = false;
+      });
+    }, {passive:true});
+  })();
 </script>
 </body>
 </html>
