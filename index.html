@@ -91,6 +91,7 @@
   /* ================= Hero ================= */
   .hero{position:relative;padding:186px 0 148px;overflow:hidden;background:linear-gradient(180deg,#0A0C10 0%,#0E141B 58%,#121A24 100%)}
   #heroWaves{position:absolute;inset:0;z-index:0}
+  #heroParallax{position:absolute;inset:0;z-index:1}
   .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:200px;background:linear-gradient(180deg,transparent,rgba(11,13,16,.95));z-index:1;pointer-events:none}
   .hero-inner{position:relative;z-index:2;max-width:820px}
   .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);color:#E4EEF7;font-family:var(--font-mono);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:7px 15px;border-radius:999px;margin-bottom:30px;border:1px solid rgba(255,255,255,.16)}
@@ -269,6 +270,7 @@
 <!-- ===================== Hero ===================== -->
 <section class="hero">
   <div id="heroWaves" aria-hidden="true"></div>
+  <div id="heroParallax" aria-hidden="true"></div>
   <div class="container hero-inner">
     <span class="pill reveal">Personal Site · 个人主页</span>
     <!-- 大标题：可替换为你的名字，或保留 wtw79 作为个人品牌 -->
@@ -412,6 +414,7 @@
 </footer>
 
 <script src="assets/js/gradient-waves.js"></script>
+<script src="assets/js/parallax-hero-images.js"></script>
 <script src="assets/js/glow-cursor.js"></script>
 <script src="assets/js/scroll-expand.js"></script>
 <script>
@@ -509,6 +512,24 @@
       parallaxStrength: 0.4,
       grain: true,
       grainIntensity: 0.03
+    });
+  })();
+
+  // ParallaxHeroImages —— 鼠标视差漂浮图（React Bits / Aceternity 原生移植）
+  (function(){
+    const el = document.getElementById('heroParallax');
+    if(!el || !window.ParallaxHeroImages) return;
+    window.__heroParallax = ParallaxHeroImages(el, {
+      images: [
+        'assets/img/project-screen.jpg',
+        'assets/img/project-console.png',
+        'assets/img/project-settings.png',
+        'assets/img/work-cover.jpg',
+        'assets/img/work-auction.png',
+        'assets/img/about-art.png'
+      ],
+      variant: 'default',
+      maxOffset: 40
     });
   })();
 
