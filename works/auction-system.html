@@ -116,11 +116,18 @@
   .wave-banner .sec-sub{color:#C4D5E4;max-width:640px}
   @media(max-width:760px){.wave-banner{padding:34px 22px 32px}.wave-banner .back{margin-bottom:22px}}
 
-  /* ============ 增强: 顶部大图 ============ */
-  .detail-hero{height:340px;border-radius:var(--radius);overflow:hidden;margin-bottom:28px;border:1px solid var(--line);box-shadow:var(--shadow-2)}
-  .detail-hero img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease-std)}
-  .detail-hero:hover img{transform:scale(1.03)}
-  @media(max-width:760px){.detail-hero{height:220px}}
+  /* ============ 增强: ScrollExpand 滚动展开帧 ============ */
+  .scroll-expand{position:relative;width:100%}
+  .scroll-expand__track{position:relative;width:100%}
+  .scroll-expand__stage{position:sticky;top:0;width:100%;overflow:hidden;--se-title-size:4rem}
+  .scroll-expand__frame{position:absolute;inset:0;clip-path:inset(21% 29% 21% 29% round 24px);will-change:clip-path}
+  .scroll-expand__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform;transform-origin:center;user-select:none;-webkit-user-drag:none}
+  .scroll-expand__scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,.1) 45%,rgba(0,0,0,.35));opacity:0}
+  .scroll-expand__overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6%;opacity:0;will-change:opacity,transform}
+  .scroll-expand__overlay h2{font-family:var(--font-display);font-size:clamp(26px,4vw,42px);font-weight:700;color:#fff;margin:0 0 12px;letter-spacing:-.01em}
+  .scroll-expand__overlay p{color:rgba(255,255,255,.82);font-size:16px;max-width:560px;margin:0 auto;line-height:1.7}
+  .scroll-expand__title{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;margin:0;padding:0 6%;text-align:center;font-size:var(--se-title-size);font-weight:700;letter-spacing:-.03em;line-height:1;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.45);pointer-events:none;will-change:opacity,transform}
+  .scroll-expand__hint{position:absolute;left:0;right:0;bottom:1.25rem;text-align:center;font-size:.8125rem;letter-spacing:.02em;color:rgba(255,255,255,.55);pointer-events:none;will-change:opacity,transform}
 
   /* ============ 增强: reveal ============ */
   .reveal{opacity:0;transform:translateY(28px) scale(.985);transition:opacity .8s var(--ease-std),transform .8s var(--ease-spring)}
@@ -155,7 +162,7 @@
       <p class="sec-sub">面向拍卖会现场的信息展示与竞价管理工具 · React + Electron 桌面应用，界面与业务规则完整对齐原 WPF 版。下面是与它有关的所有细节。</p>
     </div>
 
-    <div class="detail-hero reveal"><img src="../assets/img/work-auction.png" alt="拍卖系统界面示意"></div>
+    <div id="scrollExpand" class="reveal" aria-label="拍卖竞价显示系统展示"></div>
 
     <div class="work-card reveal tilt">
       <div class="work-head">
@@ -257,6 +264,7 @@
   </footer>
 <script src="../assets/js/gradient-waves.js"></script>
 <script src="../assets/js/glow-cursor.js"></script>
+<script src="../assets/js/scroll-expand.js"></script>
 <script>
   // GradientWaves —— 页眉波浪背景
   (function(){
@@ -308,6 +316,21 @@
       idleTimeout: 700,
       fadeDuration: 900,
       blendMode: 'screen'
+    });
+  })();
+
+  // ScrollExpand —— 滚动展开媒体帧（React Bits 原生移植）
+  (function(){
+    const el = document.getElementById('scrollExpand');
+    if(!el || !window.ScrollExpand) return;
+    window.__scrollExpand = ScrollExpand(el, {
+      src: '../assets/img/work-auction.png',
+      alt: '拍卖竞价显示系统',
+      title: '拍卖竞价显示系统',
+      scrollHint: '继续滚动，展开全貌',
+      overlayHTML: '<h2>从开场到落槌</h2><p>标的管理、大屏投屏、实时竞价、成交归档，一站式完成。</p>',
+      mediaZoom: 1.25,
+      useWindowScroll: true
     });
   })();
 
