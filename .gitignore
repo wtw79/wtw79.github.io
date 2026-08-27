@@ -1,2 +1,4 @@
 # ogl was not needed — GradientWaves uses a native WebGL2 pipeline (assets/js/gradient-waves.js)
 assets/vendor/
+# 临时 AI 生成原图（已转码为 work-cover.jpg，不直接提交）
+assets/img/Auction_gavel_close_up__*.png

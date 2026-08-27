@@ -148,6 +148,9 @@
   /* ================= 作品 ================= */
   .work-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:44px;box-shadow:var(--shadow-1);margin-bottom:28px;transition:transform .3s var(--ease-spring),box-shadow .3s,border-color .3s}
   .work-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-2);border-color:var(--line-strong)}
+  .work-media{height:260px;border-radius:calc(var(--radius) - 8px) calc(var(--radius) - 8px) 0 0;overflow:hidden;margin:-44px -44px 30px -44px;border-bottom:1px solid var(--line);position:relative}
+  .work-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease-std)}
+  .work-card:hover .work-media img{transform:scale(1.04)}
   .work-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .work-brand{display:flex;align-items:center;gap:20px}
   .work-logo{width:62px;height:62px;flex-shrink:0;border-radius:16px;box-shadow:var(--shadow-1)}
@@ -315,12 +318,10 @@
     </div>
   </div>
 
-  <!-- ===== 作品开场：滚动展开 ===== -->
-  <div id="worksExpand" aria-label="拍卖竞价显示系统展示"></div>
-
   <div class="container">
     <!-- ===== 核心作品：拍卖竞价显示系统（概括） ===== -->
     <div class="work-card reveal">
+      <div class="work-media"><img src="assets/img/work-cover.jpg" alt="拍卖竞价显示系统"></div>
       <div class="work-head">
         <div class="work-brand">
           <img class="work-logo" src="assets/img/auction-logo.svg" alt="拍卖竞价显示系统 Logo">
@@ -351,13 +352,6 @@
       <h3 style="font-family:var(--font-display);font-size:22px;margin:12px 0 8px;color:var(--ink-2)">你的其他作品</h3>
       <p style="color:var(--muted);font-size:14.5px;max-width:440px;margin:0 auto;line-height:1.7">在这里复制上面的作品卡结构，添加你的第二个、第三个作品——名称、一句话简介、功能要点、链接即可。</p>
     </div>
-
-    <!-- ===== 纪：收在作品集里 ===== -->
-    <div class="sub-h">纪</div>
-    <article class="note-card reveal">
-      <span class="note-meta">随想 · 2026</span>
-      <p>动手前我总先想它会被怎么用，这是我做这套系统时养成的。写的时候一个疏忽，到现场才显出分量，我是栽过才记牢的。我还只是个在学的人，想得明白离想得通、做的实际差得远，所以自然就在每次行动里多一份顾虑了。</p>
-    </article>
   </div>
 </section>
 
@@ -529,21 +523,6 @@
       parallaxStrength: 0.4,
       grain: true,
       grainIntensity: 0.03
-    });
-  })();
-
-  // ScrollExpand —— 作品开场滚动展开（React Bits 原生移植）
-  (function(){
-    const el = document.getElementById('worksExpand');
-    if(!el || !window.ScrollExpand) return;
-    window.__worksExpand = ScrollExpand(el, {
-      src: 'assets/img/work-auction.png',
-      alt: '拍卖竞价显示系统',
-      title: '拍卖竞价显示系统',
-      scrollHint: '继续滚动，展开全貌',
-      overlayHTML: '<h2>从开场到落槌</h2><p>标的管理、大屏投屏、实时竞价、成交归档，一站式完成。</p>',
-      mediaZoom: 1.25,
-      useWindowScroll: true
     });
   })();
 
