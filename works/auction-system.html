@@ -129,6 +129,15 @@
   .scroll-expand__title{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;margin:0;padding:0 6%;text-align:center;font-size:var(--se-title-size);font-weight:700;letter-spacing:-.03em;line-height:1;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.45);pointer-events:none;will-change:opacity,transform}
   .scroll-expand__hint{position:absolute;left:0;right:0;bottom:1.25rem;text-align:center;font-size:.8125rem;letter-spacing:.02em;color:rgba(255,255,255,.55);pointer-events:none;will-change:opacity,transform}
 
+  /* ============ 项目截图集 ============ */
+  .shots-block{margin-top:64px;margin-bottom:64px}
+  .shot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .shot{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-1);transition:transform .3s var(--ease-spring),box-shadow .3s,border-color .3s}
+  .shot:hover{transform:translateY(-4px);box-shadow:var(--shadow-2);border-color:var(--line-strong)}
+  .shot img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover;background:var(--surface-2)}
+  .shot figcaption{padding:13px 18px;font-size:13px;color:var(--muted);font-family:var(--font-mono);letter-spacing:.04em;border-top:1px solid var(--line);background:var(--surface-2)}
+  @media(max-width:900px){.shot-grid{grid-template-columns:1fr}}
+
   /* ============ 增强: reveal ============ */
   .reveal{opacity:0;transform:translateY(28px) scale(.985);transition:opacity .8s var(--ease-std),transform .8s var(--ease-spring)}
   .reveal.in{opacity:1;transform:none}
@@ -163,6 +172,29 @@
     </div>
 
     <div id="scrollExpand" class="reveal" aria-label="拍卖竞价显示系统展示"></div>
+
+    <!-- ===== 项目截图集：真实运行画面 ===== -->
+    <div class="shots-block">
+      <div class="sec-head reveal">
+        <div class="eyebrow">项目截图 · Real Screenshots</div>
+        <h2 class="sec-title">它在真实跑着的样子</h2>
+        <p class="sec-sub">不是氛围图——三张运行中系统的真实截图：大屏投屏、控制台、系统设置。</p>
+      </div>
+      <div class="shot-grid">
+        <figure class="shot reveal">
+          <img src="../assets/img/project-screen.jpg" alt="拍卖实时竞价大屏投屏界面" loading="lazy">
+          <figcaption>实时竞价 · 大屏投屏</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img src="../assets/img/project-console.png" alt="控制台竞价操作界面" loading="lazy">
+          <figcaption>控制台 · 竞价操作</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img src="../assets/img/project-settings.png" alt="系统设置界面" loading="lazy">
+          <figcaption>系统设置 · 全局样式</figcaption>
+        </figure>
+      </div>
+    </div>
 
     <div class="work-card reveal tilt">
       <div class="work-head">
